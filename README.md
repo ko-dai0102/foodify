@@ -28,34 +28,34 @@
 - has_many :likes
 - has_one_attached :image
 
-## itemtags テーブル
+## Item_tags テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| tag_id  | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| tag    | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
 - belongs_to :tag
 
-## tags テーブル
+## Tags テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
+| Column   | Type   | Options                       |
+| -------- | ------ | ----------------------------- |
+| tag_name | string | null: false, uniqueness: true |
 
 ### Association
 
 - has_many :itemtags
 
-## likes テーブル
+## Likes テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 

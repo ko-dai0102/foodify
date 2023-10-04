@@ -1,0 +1,22 @@
+<%= render "shared/header" %>
+<h3>詳細ページ</h3>
+<div class="posted-content">
+  <%= image_tag @item.image %><br>
+  <table>
+    <tr>
+      <td>カテゴリー１</td>
+      <td><%= @item.category1.name%></td>
+    </tr>
+    <tr>
+      <td>カテゴリー２</td>
+      <td><%= @item.category2.name%></td>
+    </tr>
+    <tr>
+      <th>タグ</th>
+      <td><%= @item.tags.first&.tag_name %></td>
+    </tr>
+  </table>
+  <% if user_signed_in? && current_user.id == @item.user_id%>
+    <%= link_to '編集', edit_item_path(@item.id)%>
+  <% end %>
+</div>
