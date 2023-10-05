@@ -5,18 +5,19 @@
   <table>
     <tr>
       <td>カテゴリー１</td>
-      <td><%= @item.category1.name%></td>
+      <td><%= link_to @item.category1.name, root_path(category1_id: @item.category1.id) %></td>
     </tr>
     <tr>
       <td>カテゴリー２</td>
-      <td><%= @item.category2.name%></td>
+      <td><%= link_to @item.category2.name, root_path(category2_id: @item.category2.id) %></td>
     </tr>
     <tr>
       <th>タグ</th>
-      <td><%= @item.tags.first&.tag_name %></td>
+      <td><%= link_to @item.tags.first&.tag_name, root_path(tag_name: @item.tags.first&.tag_name) %></td>
     </tr>
   </table>
   <% if user_signed_in? && current_user.id == @item.user_id%>
     <%= link_to '編集', edit_item_path(@item.id)%>
+    <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }%>
   <% end %>
 </div>

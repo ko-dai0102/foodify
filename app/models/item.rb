@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   def self.ransackable_attributes(auth_object = nil)
-    ["category1_id", "category2_id", "created_at", "id", "updated_at", "user_id"]
+    ["category1_id", "category2_id"]
   end
 
 end

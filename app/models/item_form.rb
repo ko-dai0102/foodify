@@ -13,7 +13,7 @@ class ItemForm
   end
 
   def save
-    Item.create(image:, category1_id:, category2_id:, user_id:)
+    item = Item.create(image:, category1_id:, category2_id:, user_id:)
     if tag_name.present?
       tag = Tag.where(tag_name:).first_or_initialize
       tag.save
@@ -21,8 +21,13 @@ class ItemForm
     end
   end
 
-  def update(params, post)
-    post.update(params)
+  def update(params, item)
+    item.item_tags.destroy_all
+    tag_name = params.delete(:tag_name)
+    tag = Tag.where(tag_name: tag_name).first_or_initialize if tag_name.present?
+    tag.save if tag_name.present?
+    item.update(params)
+    ItemTag.create(item_id: item.id, tag_id: tag.id) if tag_name.present?
   end
 
 end

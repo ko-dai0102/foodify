@@ -21,15 +21,6 @@
     </div>
     <%= f.submit '検索' %>
   <% end %>
-  <h1>
-    <% if params[:category1_id].present? %>
-      カテゴリ１: <%= Category1.find_by(id: params[:category1_id]).name %>
-    <% elsif params[:category2_id].present? %>
-      カテゴリ２: <%= Category2.find_by(id: params[:category2_id]).name %>
-    <% elsif params[:tag_name].present? %>
-      タグ： <%= params[:tag_name] %>
-    <% end %>
-  </h1>
   <ul class='item-lists' id="detailed-search-result">
     <% @items.each do |item| %>
       <li class='list'>
