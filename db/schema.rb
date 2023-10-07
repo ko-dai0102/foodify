@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_04_174515) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_145658) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_174515) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "likes", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_likes_on_item_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "tags", charset: "utf8", force: :cascade do |t|
     t.string "tag_name", null: false
     t.datetime "created_at", null: false
@@ -81,4 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_174515) do
   add_foreign_key "item_tags", "items"
   add_foreign_key "item_tags", "tags"
   add_foreign_key "items", "users"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
 end

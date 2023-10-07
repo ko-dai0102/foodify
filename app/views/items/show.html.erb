@@ -16,6 +16,7 @@
       <td><%= link_to @item.tags.first&.tag_name, root_path(tag_name: @item.tags.first&.tag_name) %></td>
     </tr>
   </table>
+  <%= render partial: "items/like", locals: { item: @item } %>
   <% if user_signed_in? && current_user.id == @item.user_id%>
     <%= link_to '編集', edit_item_path(@item.id)%>
     <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }%>

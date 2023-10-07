@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_show, only: [:edit, :update]
-  before_action :search_set, only: [:index, :search]
+  before_action :ransack_set, only: [:index, :search]
 
   def index
     if params[:category1_id].present?
@@ -64,6 +64,12 @@ class ItemsController < ApplicationController
   def search
   end
 
+  def incremental
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag }
+  end
+
   private
 
   def item_params
@@ -78,13 +84,9 @@ class ItemsController < ApplicationController
     return redirect_to root_path if current_user.id != @item.user.id
   end
 
-  def search_set
+  def ransack_set
     @q = Item.ransack(params[:q])
     @items = @q.result(distinct: true)
-
-    return nil if params[:keyword] == ""
-    tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
-    render json:{ keyword: tag }
   end
-
+  
 end
