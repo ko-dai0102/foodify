@@ -1,7 +1,7 @@
-<div id="like-btn<%= item.id %>">
-  <% if user_signed_in? && item.liked_by?(current_user)%>
-    <%=link_to "いいね済", item_likes_path(item.id),  data: { turbo_method: :delete }, class: "tweet_likes" %>
+<%= turbo_frame_tag item do %>
+  <% if user_signed_in? && current_user.likes.find_by(item_id: item.id) %>
+    <%= link_to "❤", item_likes_path(item.id),  data: { turbo_method: :delete }, class: "item_likes" %>
   <% else %>
-    <%=link_to "いいねする", item_likes_path(item.id), data: { turbo_method: :post }, class: "tweet_likes" %>
+    <%= link_to "♡", item_likes_path(item.id), data: { turbo_method: :post }, class: "item_likes" %>
   <% end %>
-</div>
+<% end %>
