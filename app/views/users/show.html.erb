@@ -1,0 +1,13 @@
+<%= render "shared/header" %>
+<div class="contents row">
+  <p><%= @name.name %>の投稿一覧</p>
+  <% @items.each do |item| %>
+    <li class='list'>
+      <div class="posted-content">
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.image %><br>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</div>
