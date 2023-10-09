@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :items
   has_many :likes
 
+  has_one_attached :icon
+
   validates :name, presence: true
 
 end

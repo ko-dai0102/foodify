@@ -1,6 +1,11 @@
 <%= render "shared/header" %>
 <div class="contents row">
-  <p><%= @name.name %>の投稿一覧</p>
+  <% if current_user.id == @user.id %>
+    マイページ
+    <%= link_to "ユーザー情報編集", edit_user_registration_path %>
+  <% else %>
+    <%= @user.name %>の投稿一覧
+  <% end %>
   <% @items.each do |item| %>
     <li class='list'>
       <div class="posted-content">

@@ -8,5 +8,5 @@ Rails.application.routes.draw do
       get 'incremental'
     end
   end
-  resources :users, only: :show
+  resources :users, only: [:show, :edit, :update]
 end
