@@ -4,11 +4,6 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   
   <div class="field">
-    <label class="form-text">アイコン画像</label>
-    <%= f.file_field :icon %>
-  </div>
-
-  <div class="field">
     <label class="form-text">ニックネーム</label>
     <%= f.text_area :name, id:"name", placeholder:"例) furima太郎", maxlength:"40" %>
   </div>

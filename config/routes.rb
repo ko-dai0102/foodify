@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root "items#index"
+
   resources :items do
     resource :likes, only: [:create, :destroy]
     collection do
@@ -8,5 +9,15 @@ Rails.application.routes.draw do
       get 'incremental'
     end
   end
-  resources :users, only: [:show, :edit, :update]
+
+  resources :users, only: [:show] do
+    member do
+      get 'edit_icon'
+      put 'update_icon'
+      get 'edit_name'
+      patch 'update_name'
+      get 'liked_items'
+    end
+  end
+
 end

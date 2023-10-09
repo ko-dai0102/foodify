@@ -1,0 +1,13 @@
+<h2>アイコン画像を変更</h2>
+
+<%= form_for(current_user, url: update_icon_user_path(current_user), method: :put, html: { multipart: true }) do |f| %>
+  <div class="field">
+    <%= f.file_field :icon %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "アイコンを変更する" %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", :back %>
