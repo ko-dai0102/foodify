@@ -16,10 +16,21 @@
       <td><%= link_to @item.tags.first&.tag_name, root_path(tag_name: @item.tags.first&.tag_name) %></td>
     </tr>
   </table>
-  <%= render partial: "items/like", locals: { item: @item } %>
+  <% if user_signed_in? %>
+    <%= render partial: "items/like", locals: { item: @item } %>
+  <% else %>
+    <%= link_to "♡", new_user_session_path %>
+  <% end %>
   <% if user_signed_in? && current_user.id == @item.user_id%>
     <%= link_to '編集', edit_item_path(@item.id)%>
     <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }%>
   <% end %>
-  <%= link_to @item.user.name, user_path(@item.user.id) %>
+  <a href="<%= user_path(@item.user) %>">
+    <% if @item.user.icon.attached? %>
+      <%= image_tag rails_blob_path(@item.user.icon), class: "icon" %>
+    <% else %>
+      <%= image_tag 'default_icon.jpg', class: "icon" %>
+    <% end %>
+    <%= @item.user.name %>
+  </a>
 </div>

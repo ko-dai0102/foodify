@@ -1,13 +1,43 @@
-.top-page-header{
-  display: flex;
-  align-items: center;
+.header{
   background-color: beige;
   height: 60px;
   width: 100%;
 }
 
-.lists-right{
-  margin: 0;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin: 0 10px;
+}
+
+.top-logo a {
+  text-decoration: none;
+  color: green;
+  font-size: 30px;
+}
+
+.header-right{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.header-right a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 10px;
+  height: 100%;
+}
+
+.icon-header {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  margin-right: 5px;
 }
 
 .user_name, .logout, .login, .sign-up{
@@ -21,10 +51,4 @@
 
 .search-button{
   margin-left: 5px;
-}
-
-.top-logo a {
-  text-decoration: none;
-  color: green;
-  font-size: 30px;
 }

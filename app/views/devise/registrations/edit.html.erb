@@ -2,6 +2,11 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  
+  <div class="field">
+    <label class="form-text">アイコン画像</label>
+    <%= f.file_field :icon %>
+  </div>
 
   <div class="field">
     <label class="form-text">ニックネーム</label>

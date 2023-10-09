@@ -7,9 +7,7 @@ class ItemForm
     validates :category1_id
     validates :category2_id
     validates :user_id
-    #validates :item_id
-    #validates :tag_id
-    #validates :name
+    validates :tag_name
   end
 
   def save

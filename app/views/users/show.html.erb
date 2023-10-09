@@ -1,10 +1,15 @@
 <%= render "shared/header" %>
 <div class="contents row">
-  <% if current_user.id == @user.id %>
+  <% if current_user && current_user.id == @user.id %>
     マイページ
     <%= link_to "ユーザー情報編集", edit_user_registration_path %>
   <% else %>
     <%= @user.name %>の投稿一覧
+  <% end %>
+  <% if @user.icon.attached? %>
+    <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
+  <% else %>
+    <%= image_tag 'default_icon.jpg', class: "icon" %>
   <% end %>
   <% @items.each do |item| %>
     <li class='list'>
