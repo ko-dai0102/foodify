@@ -1,9 +1,13 @@
 <%= turbo_frame_tag item do %>
   <% if user_signed_in? && current_user.likes.find_by(item_id: item.id) %>
-    <%= link_to "♥", item_likes_path(item.id),  data: { turbo_method: :delete }, class: "item_likes" %>
-    <%= item.likes.count %>
+    <div class="item-likes">
+      <%= link_to "♥", item_likes_path(item.id),  data: { turbo_method: :delete } %>
+      <%= item.likes.count %>
+    </div>
   <% else %>
-    <%= link_to "♡", item_likes_path(item.id), data: { turbo_method: :post }, class: "item_likes" %>
-    <%= item.likes.count %>
+    <div class="item-likes">
+      <%= link_to "♡", item_likes_path(item.id), data: { turbo_method: :post } %>
+      <%= item.likes.count %>
+    </div>
   <% end %>
 <% end %>

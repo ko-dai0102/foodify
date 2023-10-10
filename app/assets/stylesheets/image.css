@@ -1,8 +1,8 @@
 img {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
   /* 縦横比を保ったまま、画像を縦横100pxのサイズに収めるプロパティです */
-  object-fit: contain;
 }
 
 .icon {
