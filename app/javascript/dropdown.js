@@ -1,3 +1,4 @@
+function dropdown () {
 const parentMenuItem = document.querySelectorAll('.menu-item');
 
 // イベントを付加
@@ -28,3 +29,6 @@ function dropDownMenuClose(e) {
     childMenuLink[i].classList.remove('is-active');
   }
 }
+}
+
+window.addEventListener('turbo:load', dropdown);

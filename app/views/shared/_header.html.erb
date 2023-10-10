@@ -12,23 +12,44 @@
             <% else %>
               <%= image_tag 'default_icon.jpg', class: "icon-header" %>
             <% end %>
-            <%= current_user.name %><i class="fa-solid fa-chevron-down"></i>
+            <%= current_user.name %><%= image_tag 'down-arrow.png', class: "icon-menu" %>
           </a>
           <ul class="drop-menu">
             <li class="drop-menu-item">
               <a href="<%= user_path(current_user) %>" class="drop-menu-link">
                 <% if current_user.icon.attached? %>
-                  <%= image_tag rails_blob_path(current_user.icon), class: "icon-header" %>
+                  <%= image_tag rails_blob_path(current_user.icon), class: "icon-drop" %>
                 <% else %>
-                  <%= image_tag 'default_icon.jpg', class: "icon-header" %>
+                  <%= image_tag 'default_icon.jpg', class: "icon-drop" %>
                 <% end %>
                 <%= current_user.name %>
+                <div class="right-arrow">＞</div>
               </a>
             </li>
-            <li class="drop-menu-item"><%= link_to "いいね一覧", liked_items_user_path(current_user), class: "drop-menu-link" %></li>
-            <li class="drop-menu-item"><%= link_to "投稿する", new_item_path, class: "drop-menu-link" %></li>
-            <li class="drop-menu-item"><%= link_to "アカウント設定", edit_user_path(current_user), class: "drop-menu-link" %></li>
-            <li class="drop-menu-item"><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "drop-menu-link" %></li>
+            <li class="drop-menu-item">
+              <a href="<%= liked_items_user_path(current_user) %>" class="drop-menu-link">
+                <div>いいね一覧</div>
+                <div class="right-arrow">＞</div>
+              </a>
+            </li>
+            <li class="drop-menu-item">
+              <a href="<%= new_item_path %>" class="drop-menu-link">
+                <div>投稿する</div>
+                <div class="right-arrow">＞</div>
+              </a>
+            </li>
+            <li class="drop-menu-item">
+              <a href="<%= edit_user_path(current_user) %>" class="drop-menu-link">
+                <div>アカウント設定</div>
+                <div class="right-arrow">＞</div>
+              </a>
+            </li>
+            <li class="drop-menu-item">
+              <a href="<%= destroy_user_session_path %>" data-turbo-method="delete" class="drop-menu-link">
+                <div>ログアウト</div>
+                <div class="right-arrow">＞</div>
+              </a>
+            </li>
           </ul>
         </div>
       <% else %>

@@ -82,3 +82,5 @@ gem 'ransack'
 
 gem 'sassc'
 gem "sassc-rails"
+
+gem 'font-awesome-sass'
