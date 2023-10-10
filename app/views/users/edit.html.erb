@@ -1,0 +1,10 @@
+<%= render "shared/header" %>
+<a href="<%= edit_icon_user_path(current_user) %>">
+  <% if @user.icon.attached? %>
+    <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
+  <% else %>
+    <%= image_tag 'default_icon.jpg', class: "icon" %>
+  <% end %>
+</a>
+<%= link_to @user.name, edit_name_user_path(current_user) %>
+<%= link_to "アカウント情報編集", edit_user_registration_path %>

@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
-  before_action :user_set, only: [:show, :liked_items]
+  before_action :user_set, only: [:show, :edit, :liked_items]
 
   def show
     @items = @user.items
+  end
+
+  def edit
   end
 
   def edit_icon

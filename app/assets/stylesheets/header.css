@@ -52,3 +52,51 @@
 .search-button{
   margin-left: 5px;
 }
+
+
+li {
+  list-style: none;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.menu-link a {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-link:hover {
+  background-color: #ebebeb;
+  color: #666;
+}
+
+.drop-menu {
+  position: absolute;
+  transition: all .3s;
+}
+
+.drop-menu-link {
+  display: none;
+  background-color: #ebebeb;
+  transition: all .3s;
+  padding: 5px 20px;
+}
+
+.drop-menu-link:hover {
+  background-color: lightcyan;
+}
+
+.drop-menu-link.is-active {
+  display: block;
+}

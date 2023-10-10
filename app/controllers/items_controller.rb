@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
       tag = Tag.find_by(tag_name: params[:tag_name])
       @items = tag ? tag.items : []
     end
+
   end
 
   def new
@@ -86,7 +87,7 @@ class ItemsController < ApplicationController
 
   def ransack_set
     @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true)
+    @items = @q.result(distinct: true).order(created_at: :desc)
   end
   
 end

@@ -3,22 +3,42 @@
     <div class="top-logo">
       <a href="/">Foodify</a>
     </div>
-    <div class='header-right'>
+    <div class="top-menu">
       <% if user_signed_in? %>
-        <a href="<%= user_path(current_user) %>">
-          <% if current_user.icon.attached? %>
-            <%= image_tag rails_blob_path(current_user.icon), class: "icon-header" %>
-          <% else %>
-            <%= image_tag 'default_icon.jpg', class: "icon-header" %>
-          <% end %>
-          <%= current_user.name %>
-        </a>
-        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-        <%= link_to "投稿する", new_item_path %>
+        <div class="menu">
+          <div class="menu-item" id="menu-item">
+            <a href="<%= user_path(current_user) %>" class="menu-link">
+              <% if current_user.icon.attached? %>
+                <%= image_tag rails_blob_path(current_user.icon), class: "icon-header" %>
+              <% else %>
+                <%= image_tag 'default_icon.jpg', class: "icon-header" %>
+              <% end %>
+              <%= current_user.name %>＞
+            </a>
+            <ul class="drop-menu">
+              <li class="drop-menu-item">
+                <a href="<%= user_path(current_user) %>" class="drop-menu-link">
+                  <% if current_user.icon.attached? %>
+                    <%= image_tag rails_blob_path(current_user.icon), class: "icon-header" %>
+                  <% else %>
+                    <%= image_tag 'default_icon.jpg', class: "icon-header" %>
+                  <% end %>
+                  <%= current_user.name %>
+                </a>
+              </li>
+              <li class="drop-menu-item"><%= link_to "いいね一覧", liked_items_user_path(current_user), class: "drop-menu-link" %></li>
+              <li class="drop-menu-item"><%= link_to "投稿する", new_item_path, class: "drop-menu-link" %></li>
+              <li class="drop-menu-item"><%= link_to "アカウント設定", edit_user_path(current_user), class: "drop-menu-link" %></li>
+              <li class="drop-menu-item"><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "drop-menu-link" %></li>
+            </ul>
+          </div>
+        </div>
       <% else %>
-        <%= link_to 'ログイン', new_user_session_path %>
-        <%= link_to '新規登録', new_user_registration_path %>
+        <div class="header-right">
+          <%= link_to 'ログイン', new_user_session_path %>
+          <%= link_to '新規登録', new_user_registration_path %>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </div>
 </header>

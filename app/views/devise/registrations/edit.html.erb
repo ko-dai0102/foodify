@@ -2,11 +2,6 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <label class="form-text">ニックネーム</label>
-    <%= f.text_area :name, id:"name", placeholder:"例) furima太郎", maxlength:"40" %>
-  </div>
 
   <div class="field">
     <label class="form-text">メールアドレス</label>

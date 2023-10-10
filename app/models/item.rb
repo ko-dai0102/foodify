@@ -9,6 +9,13 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
+  scope :latest, -> { order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  
+  def like_count
+    likes.count
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["category1_id", "category2_id"]
   end

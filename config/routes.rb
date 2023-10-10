@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :edit] do
     member do
       get 'edit_icon'
       put 'update_icon'

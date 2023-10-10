@@ -1,6 +1,7 @@
 <%= form_with model: @item_form, url: url, method: method, id: 'new_item', local: true do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
   <div class="image-field">
+    <div id="previews"></div>
     <span>■ 画像</span>
     <div class="click-upload">
       <%= f.file_field :image %>

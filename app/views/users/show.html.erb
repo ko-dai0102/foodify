@@ -9,7 +9,7 @@
       <% end %>
     </a>
     <%= link_to @user.name, edit_name_user_path(current_user) %>
-    <%= link_to "アカウント情報編集", edit_user_registration_path %>
+    <%= link_to "アカウント設定", edit_user_path %>
     <%= link_to "いいねした投稿", liked_items_user_path(@user.id) %>
   <% else %>
       <% if @user.icon.attached? %>
