@@ -20,13 +20,18 @@
       <%= @user.name %>の投稿一覧
   <% end %>
   
-  <% @items.each do |item| %>
-    <li class='list'>
-      <div class="posted-content">
+  <div class='item-lists' id="detailed-search-result">
+    <% @items.each do |item| %>
+      <div class="posted-item">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image %><br>
+          <%= image_tag item.image %>
+        <% end %>
+        <% if user_signed_in? %>
+          <%= render partial: "items/like", locals: { item: item } %>
+        <% else %>
+          <%= link_to "♡", new_user_session_path %>
         <% end %>
       </div>
-    </li>
-  <% end %>
+    <% end %>
+  </div>
 </div>
