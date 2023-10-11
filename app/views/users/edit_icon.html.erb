@@ -1,3 +1,4 @@
+<%= render "shared/header" %>
 <h2>アイコン画像を変更</h2>
 
 <%= form_for(current_user, url: update_icon_user_path(current_user), method: :put, html: { multipart: true }) do |f| %>

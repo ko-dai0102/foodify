@@ -17,7 +17,11 @@ Rails.application.routes.draw do
       get 'edit_name'
       patch 'update_name'
       get 'liked_items'
+      get 'followers'
+      get 'followings'
     end
+
+    resource :relationships, only: [:create, :destroy]
   end
 
 end

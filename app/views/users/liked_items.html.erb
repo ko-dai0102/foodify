@@ -11,14 +11,14 @@
     <%= link_to @user.name, edit_name_user_path(current_user) %>
     <%= link_to "アカウント情報編集", edit_user_registration_path %>
   <% end %>
-  
-  <% @liked_items.each do |item| %>
-    <li class='list'>
-      <div class="posted-content">
+  <div class='item-lists' id="detailed-search-result">
+    <% @liked_items.each do |item| %>
+      <div class="posted-item">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image %><br>
+          <%= image_tag item.image %>
         <% end %>
+        <%= render partial: "items/like", locals: { item: item } %>
       </div>
-    </li>
-  <% end %>
+    <% end %>
+  </div>
 </div>

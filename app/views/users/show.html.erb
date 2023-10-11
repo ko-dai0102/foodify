@@ -9,15 +9,20 @@
       <% end %>
     </a>
     <%= link_to @user.name, edit_name_user_path(current_user) %>
+    <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user) %>
+    <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user) %>
     <%= link_to "アカウント設定", edit_user_path %>
     <%= link_to "いいねした投稿", liked_items_user_path(@user.id) %>
   <% else %>
-      <% if @user.icon.attached? %>
-        <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
-      <% else %>
-        <%= image_tag 'default_icon.jpg', class: "icon" %>
-      <% end %>
-      <%= @user.name %>の投稿一覧
+    <% if @user.icon.attached? %>
+      <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
+    <% else %>
+      <%= image_tag 'default_icon.jpg', class: "icon" %>
+    <% end %>
+    <%= @user.name %>
+    <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user) %>
+    <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user) %>
+    <%= render partial: "users/follow", locals: { user: @user } %>
   <% end %>
   
   <div class='item-lists' id="detailed-search-result">
@@ -26,11 +31,7 @@
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.image %>
         <% end %>
-        <% if user_signed_in? %>
-          <%= render partial: "items/like", locals: { item: item } %>
-        <% else %>
-          <%= link_to "♡", new_user_session_path %>
-        <% end %>
+        <%= render partial: "items/like", locals: { item: item } %>
       </div>
     <% end %>
   </div>

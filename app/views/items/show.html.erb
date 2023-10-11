@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 <h3>詳細ページ</h3>
-<div class="posted-content">
+<div class="show-item">
   <%= image_tag @item.image %><br>
   <table>
     <tr>
@@ -16,11 +16,7 @@
       <td><%= link_to @item.tags.first&.tag_name, root_path(tag_name: @item.tags.first&.tag_name) %></td>
     </tr>
   </table>
-  <% if user_signed_in? %>
-    <%= render partial: "items/like", locals: { item: @item } %>
-  <% else %>
-    <%= link_to "♡", new_user_session_path %>
-  <% end %>
+  <%= render partial: "items/like", locals: { item: @item } %>
   <% if user_signed_in? && current_user.id == @item.user_id%>
     <%= link_to '編集', edit_item_path(@item.id)%>
     <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }%>
@@ -33,4 +29,5 @@
     <% end %>
     <%= @item.user.name %>
   </a>
+    <%= render partial: "users/follow", locals: { user: @user } %>
 </div>

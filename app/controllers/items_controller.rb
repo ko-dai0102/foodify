@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show]
   before_action :redirect_to_show, only: [:edit, :update]
   before_action :ransack_set, only: [:index, :search]
 
@@ -79,6 +80,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(@item.user_id)
   end
 
   def redirect_to_show

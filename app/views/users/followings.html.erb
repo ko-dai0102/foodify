@@ -1,0 +1,15 @@
+<%= render "shared/header" %>
+<h3>フォロー中</h3>
+<% @followings.each do |user| %>
+  <a href="<%= user_path(user) %>">
+    <div>
+      <% if user.icon.attached? %>
+        <%= image_tag rails_blob_path(user.icon), class: "icon" %>
+      <% else %>
+        <%= image_tag 'default_icon.jpg', class: "icon" %>
+      <% end %>
+      <%= user.name %>
+      <%= render partial: "users/follow", locals: { user: user } %>
+    </div>
+  </a>
+<% end %>

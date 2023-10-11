@@ -27,11 +27,7 @@
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.image %>
         <% end %>
-        <% if user_signed_in? %>
-          <%= render partial: "items/like", locals: { item: item } %>
-        <% else %>
-          <%= link_to "♡", new_user_session_path %>
-        <% end %>
+        <%= render partial: "items/like", locals: { item: item } %>
       </div>
     <% end %>
   </div>

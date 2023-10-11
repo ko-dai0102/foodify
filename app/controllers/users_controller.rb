@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_set, only: [:show, :edit, :liked_items]
+  before_action :set_user, only: [:show, :edit, :liked_items, :followers, :followings]
 
   def show
     @items = @user.items
@@ -36,9 +36,17 @@ class UsersController < ApplicationController
     @liked_items = Like.where(user_id: @user.id).map(&:item)
   end
 
+  def followers
+    @followers = @user.followers
+  end
+
+  def followings
+    @followings = @user.followings
+  end
+
   private
 
-  def user_set
+  def set_user
     @user = User.find(params[:id])
   end
 

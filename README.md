@@ -61,3 +61,15 @@
 
 - belongs_to :user
 - belongs_to :item
+
+## Relationship テーブル
+
+| Column    | Type       | Options                                 |
+| --------- | ---------- | --------------------------------------- |
+| following | references | null: false, foreign_key: :following_id |
+| follower  | references | null: false, foreign_key: :follower_id  |
+
+### Association
+
+- belongs_to :following, class_name: "User"
+- belongs_to :follower, class_name: "User"
