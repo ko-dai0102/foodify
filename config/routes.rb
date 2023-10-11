@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'incremental'
+      get 'timeline'
     end
   end
 
@@ -21,7 +22,13 @@ Rails.application.routes.draw do
       get 'followings'
     end
 
-    resource :relationships, only: [:create, :destroy]
+    resource :relationships, only: [:create, :destroy] do
+      member do
+        post 'list_create'
+        delete 'list_destroy'
+      end
+    end
+
   end
 
 end

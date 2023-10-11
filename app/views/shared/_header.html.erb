@@ -1,7 +1,8 @@
 <header class='header'>
   <div class="header-container">
     <div class="top-logo">
-      <a href="/">Foodify</a>
+      <%= link_to "Foodify", root_path %>
+      <%= link_to "🕐", timeline_items_path %>
     </div>
     <div class="top-menu">
       <% if user_signed_in? %>

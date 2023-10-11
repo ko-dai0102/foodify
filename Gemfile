@@ -84,3 +84,5 @@ gem 'sassc'
 gem "sassc-rails"
 
 gem 'font-awesome-sass'
+
+gem 'pry-rails'

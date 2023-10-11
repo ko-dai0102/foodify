@@ -25,9 +25,12 @@
     <% @items.each do |item| %>
       <div class="posted-item">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image %>
+          <%= image_tag item.image, class: 'posted-image' %>
+          <div class="item-counts">
+            <%= image_tag 'heart_white.png', class: "white-heart" %>
+            <%= item.likes.count %>
+          </div>
         <% end %>
-        <%= render partial: "items/like", locals: { item: item } %>
       </div>
     <% end %>
   </div>

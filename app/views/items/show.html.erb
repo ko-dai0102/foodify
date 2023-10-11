@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
-<h3>詳細ページ</h3>
 <div class="show-item">
-  <%= image_tag @item.image %><br>
+  <%= image_tag @item.image, class: 'show-image' %><br>
+  <div class="show-side">
   <table>
     <tr>
       <td>カテゴリー１</td>
@@ -29,5 +29,6 @@
     <% end %>
     <%= @item.user.name %>
   </a>
-    <%= render partial: "users/follow", locals: { user: @user } %>
+  <%= render partial: "users/follow", locals: { user: @user } %>
+  </div>
 </div>

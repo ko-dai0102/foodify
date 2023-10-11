@@ -9,7 +9,7 @@
         <%= image_tag 'default_icon.jpg', class: "icon" %>
       <% end %>
       <%= user.name %>
-      <%= render partial: "users/follow", locals: { user: user } %>
+      <%= render partial: "users/list_follow", locals: { user: user } %>
     </div>
   </a>
 <% end %>

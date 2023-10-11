@@ -26,3 +26,12 @@ td:first-child{
   padding: 5px;
   font-size: 12px;
 }
+
+.show-item {
+  display: flex;
+  margin: 0 100px;
+}
+
+.show-side {
+  
+}

@@ -1,7 +1,4 @@
-#detailed-search-wrapper{
-  display:flex;
-  justify-content: center;
-}
+
 
 #detailed-search-form{
   background-color: white;
@@ -37,15 +34,4 @@
 .checkbox-category {
   display: flex;
   flex-direction: column;
-}
-
-.posted-item {
-  position: relative;
-  margin: 0 5px 5px 0;
-}
-
-.item-likes {
-  position: absolute;
-  top: 120px;
-  right: 7px;
 }

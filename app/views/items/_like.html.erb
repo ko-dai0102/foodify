@@ -3,13 +3,15 @@
     <% if current_user.likes.find_by(item_id: item.id) %>
       <div class="item-likes">
         <%= link_to item_likes_path(item.id), data: { turbo_method: :delete } do %>
-          ♥<%= item.likes.count %>
+          <%= image_tag 'heart_after.png', class: "heart" %>
+          <%= content_tag(:span, item.likes.count, class: "heart-text") %>
         <% end %>
       </div>
     <% else %>
       <div class="item-likes">
         <%= link_to item_likes_path(item.id), data: { turbo_method: :post } do %>
-          ♡<%= item.likes.count %>
+          <%= image_tag 'heart_before.png', class: "heart" %>
+          <%= item.likes.count %>
         <% end %>
       </div>
     <% end %>
@@ -17,7 +19,8 @@
 <% else %>
   <div class="item-likes">
     <%= link_to new_user_session_path do %>
-      ♡<%= item.likes.count %>
+      <%= image_tag 'heart_before.png', class: "heart" %>
+      <%= item.likes.count %>
     <% end %>
   </div>
 <% end %>

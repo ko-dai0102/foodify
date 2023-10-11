@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show]
   before_action :redirect_to_show, only: [:edit, :update]
-  before_action :ransack_set, only: [:index, :search]
+  before_action :ransack_set, only: [:index]
 
   def index
     if params[:category1_id].present?
@@ -70,6 +70,12 @@ class ItemsController < ApplicationController
     return nil if params[:keyword] == ""
     tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
     render json:{ keyword: tag }
+  end
+
+  def timeline
+    followers = current_user.followings
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true).where(user_id: followers).order(created_at: :desc)
   end
 
   private

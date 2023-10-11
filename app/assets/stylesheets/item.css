@@ -1,0 +1,64 @@
+.item-lists{
+  display:flex;
+  height: 150px;
+}
+
+.posted-item {
+  position: relative;
+  margin: 0 3px 3px 0;
+  height: 150px;
+  width: 150px;
+}
+
+.posted-image {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.posted-image:hover {
+  filter: brightness(0.6);
+}
+
+.item-counts {
+  position: absolute;
+  top: 125px;
+  right: 5px;
+  width: 30px;
+  text-decoration: none;
+  color: white;
+  display: none;
+}
+
+.item-counts a {
+  height: 100%;
+  width: 100%;
+}
+
+.posted-item:hover .item-counts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.posted-item:hover {
+  .posted-image {
+    filter: brightness(0.6);
+  }
+}
+
+.white-heart {
+  height: 18px;
+  width: 18px;
+  object-fit: cover;
+}
+
+.heart {
+  height: 18px;
+  width: 18px;
+  object-fit: cover;
+}
+
+.heart-text {
+  color: pink;
+}
