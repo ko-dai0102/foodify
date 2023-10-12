@@ -1,11 +1,22 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :timeline]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:show]
   before_action :redirect_to_show, only: [:edit, :update]
-  before_action :ransack_set, only: [:index]
 
   def index
+    @items = Item.all.order(created_at: :desc)
+  end
+  
+  def timeline
+    followers = current_user.followings
+    @items = Item.where(user_id: followers).order(created_at: :desc)
+  end
+
+  def search
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true).includes(:item_tags, :tags).order('RAND()')
+
     if params[:category1_id].present?
       category1 = Category1.find_by(id: params[:category1_id])
       @items = @items.where(category1_id: category1.id)
@@ -20,7 +31,6 @@ class ItemsController < ApplicationController
       tag = Tag.find_by(tag_name: params[:tag_name])
       @items = tag ? tag.items : []
     end
-
   end
 
   def new
@@ -62,9 +72,6 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
-  
-  def search
-  end
 
   def incremental
     return nil if params[:keyword] == ""
@@ -72,11 +79,6 @@ class ItemsController < ApplicationController
     render json:{ keyword: tag }
   end
 
-  def timeline
-    followers = current_user.followings
-    @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true).where(user_id: followers).order(created_at: :desc)
-  end
 
   private
 
@@ -94,11 +96,6 @@ class ItemsController < ApplicationController
 
   def redirect_to_show
     return redirect_to root_path if current_user.id != @item.user.id
-  end
-
-  def ransack_set
-    @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true).order(created_at: :desc)
   end
   
 end

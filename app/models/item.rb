@@ -20,6 +20,10 @@ class Item < ApplicationRecord
     ["category1_id", "category2_id"]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    ["item_tags", "tags"]
+  end
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end

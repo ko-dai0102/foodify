@@ -4,14 +4,14 @@
       <div class="item-likes">
         <%= link_to item_likes_path(item.id), data: { turbo_method: :delete } do %>
           <%= image_tag 'heart_after.png', class: "heart" %>
-          <%= content_tag(:span, item.likes.count, class: "heart-text") %>
+          <%= content_tag(:span, item.likes.count, class: "heart-after-text") %>
         <% end %>
       </div>
     <% else %>
       <div class="item-likes">
         <%= link_to item_likes_path(item.id), data: { turbo_method: :post } do %>
           <%= image_tag 'heart_before.png', class: "heart" %>
-          <%= item.likes.count %>
+          <%= content_tag(:span, item.likes.count, class: "heart-before-text") %>
         <% end %>
       </div>
     <% end %>
@@ -20,7 +20,7 @@
   <div class="item-likes">
     <%= link_to new_user_session_path do %>
       <%= image_tag 'heart_before.png', class: "heart" %>
-      <%= item.likes.count %>
+      <%= content_tag(:span, item.likes.count, class: "heart-before-text") %>
     <% end %>
   </div>
 <% end %>

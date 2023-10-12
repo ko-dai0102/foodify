@@ -5,15 +5,15 @@
   <table>
     <tr>
       <td>カテゴリー１</td>
-      <td><%= link_to @item.category1.name, root_path(category1_id: @item.category1.id) %></td>
+      <td><%= link_to @item.category1.name, search_items_path(category1_id: @item.category1.id) %></td>
     </tr>
     <tr>
       <td>カテゴリー２</td>
-      <td><%= link_to @item.category2.name, root_path(category2_id: @item.category2.id) %></td>
+      <td><%= link_to @item.category2.name, search_items_path(category2_id: @item.category2.id) %></td>
     </tr>
     <tr>
       <th>タグ</th>
-      <td><%= link_to @item.tags.first&.tag_name, root_path(tag_name: @item.tags.first&.tag_name) %></td>
+      <td><%= link_to @item.tags.first&.tag_name, search_items_path(tag_name: @item.tags.first&.tag_name) %></td>
     </tr>
   </table>
   <%= render partial: "items/like", locals: { item: @item } %>

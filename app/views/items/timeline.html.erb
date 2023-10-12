@@ -1,29 +1,16 @@
 <%= render "shared/header" %>
 <div class='item-contents' id="detailed-search-result-wrapper">
-  <%= search_form_for @q, url: timeline_items_path, html: {id: "detailed-search-form"} do |f| %>
-    <div class="search-field">
-      <%= f.label :category1_id_in, 'カテゴリ１' %>
-      <br>
-      <div class="checkbox-category">
-        <%= f.collection_check_boxes(:category1_id_in, Category1.all, :id, :name) do |b| %>
-          <%= b.label { b.check_box + b.text } %>
-        <% end %>
-      </div>
-    </div>
-    <div class="search-field">
-      <%= f.label :category2_id_in, 'カテゴリ２' %>
-      <br>
-      <div class="checkbox-category">
-        <%= f.collection_check_boxes(:category2_id_in, Category2.all, :id, :name) do |b| %>
-          <%= b.label { b.check_box + b.text } %>
-        <% end %>
-      </div>
-    </div>
-    <%= f.submit '検索' %>
-  <% end %>
   <div class='item-lists' id="detailed-search-result">
     <% @items.each do |item| %>
-      <div class="posted-item">
+      <div class="timeline-posted-item">
+        <a href="<%= user_path(item.user) %>" class="timeline-user">
+          <% if item.user.icon.attached? %>
+            <%= image_tag rails_blob_path(item.user.icon), class: "timeline-icon" %>
+          <% else %>
+            <%= image_tag 'default_icon.jpg', class: "timeline-icon" %>
+          <% end %>
+          <%= item.user.name %>
+        </a>
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.image, class: 'posted-image' %>
           <div class="item-counts">
@@ -31,6 +18,7 @@
             <%= item.likes.count %>
           </div>
         <% end %>
+        <%= render partial: "items/like", locals: { item: item } %>
       </div>
     <% end %>
   </div>

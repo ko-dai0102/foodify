@@ -1,26 +1,100 @@
-<%= render "shared/header" %>
+<header class='header'>
+  <div class="header-container">
+    <div class="side-top">
+      <div class="top-logo">
+        <%= link_to "Foodify", root_path %>
+      </div>
+      <div class="side-navi">
+        <div class="navi-content">
+          <a href="<%= root_path %>" class="navi-link">
+            <%= image_tag "home.png", class: "navi-icon" %>
+            <div class="navi-text">ホーム</div>
+          </a>
+        </div>
+        <div class="navi-content">
+          <a href="<%= search_items_path %>" class="navi-link">
+            <%= image_tag "kensaku.png", class: "navi-icon" %>
+            <div class="navi-text">見つける</div>
+          </a>
+        </div>
+        <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
+          <div class="search-field">
+            <%= f.label :category1_id_in, 'カテゴリ１' %>
+            <br>
+            <div class="checkbox-category">
+              <%= f.collection_check_boxes(:category1_id_in, Category1.all, :id, :name) do |b| %>
+                <%= b.label { b.check_box + b.text } %>
+              <% end %>
+            </div>
+          </div>
+          <div class="search-field">
+            <%= f.label :category2_id_in, 'カテゴリ２' %>
+            <br>
+            <div class="checkbox-category">
+              <%= f.collection_check_boxes(:category2_id_in, Category2.all, :id, :name) do |b| %>
+                <%= b.label { b.check_box + b.text } %>
+              <% end %>
+            </div>
+          </div>
+          <div class="search-field">
+            <%= f.label :tags_tag_name_cont, 'タグ名' %>
+            <br>
+            <%= f.text_field :tags_tag_name_cont, placeholder: 'タグ名', id: 'item_form_tag_name' %>
+            <div id="search-result"></div>
+            </div>
+          <%= f.submit '検索' %>
+        <% end %>
+        <div class="navi-content">
+          <a href="<%= timeline_items_path %>" class="navi-link">
+            <%= image_tag "time.png", class: "navi-icon" %>
+            <div class="navi-text">タイムライン</div>
+          </a>
+        </div>
+        <div class="navi-content">
+          <a href="#" class="navi-link">
+            <%= image_tag "tuuti.png", class: "navi-icon" %>
+            <div class="navi-text">通知</div>
+          </a>
+        </div>
+        <div class="navi-content">
+          <a href="<%= liked_items_user_path(current_user) %>" class="navi-link">
+            <%= image_tag "iine.png", class: "navi-icon" %>
+            <div class="navi-text">いいね</div>
+          </a>
+        </div>
+        <% if user_signed_in? %>
+          <div class="navi-content">
+            <a href="<%= user_path(current_user) %>" class="menu-link">
+              <% if current_user.icon.attached? %>
+                <%= image_tag rails_blob_path(current_user.icon), class: "navi-user-icon" %>
+              <% else %>
+                <%= image_tag 'default_icon.jpg', class: "navi-user-icon" %>
+              <% end %>
+              <%= current_user.name %>
+            </a>
+          </div>
+        <% else %>
+          <%= link_to 'ログイン', new_user_session_path %>
+          <%= link_to '新規登録', new_user_registration_path %>
+        <% end %>
+        <div class="navi-content-create">
+          <a href="<%= new_item_path %>" class="navi-link-create">
+            <div class="navi-text">投稿する</div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="side-bottom">
+      <div class="bottom-content">
+        <a href="<%= edit_user_path(current_user) %>" class="navi-link">
+          <%= image_tag "setting.png", class: "navi-icon" %>
+          <div class="navi-text">設定</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
 <div class='item-contents' id="detailed-search-result-wrapper">
-  <%= search_form_for @q, url: search_items_path, html: {id: "detailed-search-form"} do |f| %>
-    <div class="search-field">
-      <%= f.label :category1_id_in, 'カテゴリ１' %>
-      <br>
-      <div class="checkbox-category">
-        <%= f.collection_check_boxes(:category1_id_in, Category1.all, :id, :name) do |b| %>
-          <%= b.label { b.check_box + b.text } %>
-        <% end %>
-      </div>
-    </div>
-    <div class="search-field">
-      <%= f.label :category2_id_in, 'カテゴリ２' %>
-      <br>
-      <div class="checkbox-category">
-        <%= f.collection_check_boxes(:category2_id_in, Category2.all, :id, :name) do |b| %>
-          <%= b.label { b.check_box + b.text } %>
-        <% end %>
-      </div>
-    </div>
-    <%= f.submit '検索' %>
-  <% end %>
   <div class='item-lists' id="detailed-search-result">
     <% @items.each do |item| %>
       <div class="posted-item">

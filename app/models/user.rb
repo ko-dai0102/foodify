@@ -20,5 +20,4 @@ class User < ApplicationRecord
   end
 
   validates :name, presence: true
-
 end
