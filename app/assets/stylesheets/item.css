@@ -16,6 +16,7 @@
   flex: 0 0 calc(33.33% - 10px); /* 幅を均等に分割し、スペースを考慮 */
   height: 320px;
   margin: 0;
+  position: relative;
 }
 
 .posted-image {
@@ -30,9 +31,8 @@
 
 .item-counts {
   position: absolute;
-  top: 125px;
-  right: 5px;
-  width: 30px;
+  top: 280px;
+  right: 18px;
   text-decoration: none;
   color: white;
   display: none;
@@ -46,7 +46,6 @@
 .posted-item:hover .item-counts {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .posted-item:hover {
@@ -59,6 +58,11 @@
   height: 18px;
   width: 18px;
   object-fit: cover;
+  margin-right: 4px;
+}
+
+.white-count {
+  margin-right: 10px;
 }
 
 .heart {
@@ -74,7 +78,7 @@
 }
 
 .heart-before-text {
-  color: gray;
+  color: black;
 }
 
 .item-likes a {

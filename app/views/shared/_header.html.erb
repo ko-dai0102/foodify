@@ -29,12 +29,18 @@
             <div class="navi-text">通知</div>
           </a>
         </div>
+        
+        <% if user_signed_in? %>
         <div class="navi-content">
           <a href="<%= liked_items_user_path(current_user) %>" class="navi-link">
             <%= image_tag "iine.png", class: "navi-icon" %>
             <div class="navi-text">いいね</div>
           </a>
         </div>
+        <% else %>
+        <% end %>
+
+
         <% if user_signed_in? %>
           <div class="navi-content">
             <a href="<%= user_path(current_user) %>" class="menu-link">
@@ -57,6 +63,8 @@
         </div>
       </div>
     </div>
+    
+    <% if user_signed_in? %>
     <div class="side-bottom">
       <div class="bottom-content">
         <a href="<%= edit_user_path(current_user) %>" class="navi-link">
@@ -65,5 +73,7 @@
         </a>
       </div>
     </div>
+    <% else %>
+    <% end %>
   </div>
 </header>

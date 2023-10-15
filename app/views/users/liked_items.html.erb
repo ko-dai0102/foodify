@@ -1,24 +1,74 @@
 <%= render "shared/header" %>
-<div class="contents row">
+<div class="item-contents">
+ <div class="profile-container">
   <% if current_user && current_user.id == @user.id %>
+   <div class="profile-icon-box">
     <a href="<%= edit_icon_user_path(current_user) %>">
       <% if @user.icon.attached? %>
-        <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
+        <%= image_tag rails_blob_path(@user.icon), class: "profire-icon" %>
       <% else %>
-        <%= image_tag 'default_icon.jpg', class: "icon" %>
+        <%= image_tag 'default_icon.jpg', class: "profire-icon" %>
       <% end %>
     </a>
+   </div>
+   <div class="profile-detail">
+    <div class="profile-1">
     <%= link_to @user.name, edit_name_user_path(current_user) %>
-    <%= link_to "アカウント情報編集", edit_user_registration_path %>
+    <%= button_to 'プロフィールを編集', edit_user_path(current_user), method: :get, class: "profile-setting-button" %>
+    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+    </div>
+    <div class="profile-2">
+    <%= "投稿#{@user.items.count}件"%>
+    <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count" %>
+    <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count" %>
+    </div>
+    <div class="huri">
+      フリーコメント欄
+    </div>
+   </div>
+  <% else %>
+  <div class="profile-icon-box">
+    <% if @user.icon.attached? %>
+      <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
+    <% else %>
+      <%= image_tag 'default_icon.jpg', class: "icon" %>
+    <% end %>
+    </div>
+    <div class="profile-detail">
+      <div class="profile-1">
+        <%= @user.name %>
+        <%= render partial: "users/follow", locals: { user: @user } %>
+        <%= button_to 'メッセージを送信', class: "profile-setting-button" %>
+      </div>
+      <div class="profile-2">
+        <%= "投稿#{@user.items.count}件"%>
+        <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count" %>
+        <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count" %>
+      </div>
+      <div class="huri">
+        フリーコメント欄
+      </div>
+    </div>
   <% end %>
-  <div class='item-lists' id="detailed-search-result">
+ </div>
+
+<div class="user-navi">
+  <nav class="my-parts">
+	<ul>
+		<li><a href="#"></a></li>
+    <li><%= link_to "投稿", user_path(@user) %></li>
+		<li><%= link_to "いいね", liked_items_user_path(@user.id) %></li>
+</div>
+
+  <div class='item-lists'>
     <% @liked_items.each do |item| %>
       <div class="posted-item">
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.image, class: 'posted-image' %>
           <div class="item-counts">
             <%= image_tag 'heart_white.png', class: "white-heart" %>
-            <%= item.likes.count %>
+            <%= content_tag(:span, item.likes.count, class: "white-count") %>
+            <%= image_tag 'comment.png', class: "white-heart" %>
           </div>
         <% end %>
       </div>

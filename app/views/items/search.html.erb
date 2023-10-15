@@ -94,15 +94,16 @@
     </div>
   </div>
 </header>
-<div class='item-contents' id="detailed-search-result-wrapper">
-  <div class='item-lists' id="detailed-search-result">
+<div class='item-contents'>
+  <div class='item-lists'>
     <% @items.each do |item| %>
       <div class="posted-item">
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.image, class: 'posted-image' %>
           <div class="item-counts">
             <%= image_tag 'heart_white.png', class: "white-heart" %>
-            <%= item.likes.count %>
+            <%= content_tag(:span, item.likes.count, class: "white-count") %>
+            <%= image_tag 'comment.png', class: "white-heart" %>
           </div>
         <% end %>
       </div>

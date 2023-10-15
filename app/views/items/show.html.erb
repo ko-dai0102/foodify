@@ -1,34 +1,57 @@
 <%= render "shared/header" %>
-<div class="show-item">
-  <%= image_tag @item.image, class: 'show-image' %><br>
-  <div class="show-side">
-  <table>
-    <tr>
-      <td>カテゴリー１</td>
-      <td><%= link_to @item.category1.name, search_items_path(category1_id: @item.category1.id) %></td>
-    </tr>
-    <tr>
-      <td>カテゴリー２</td>
-      <td><%= link_to @item.category2.name, search_items_path(category2_id: @item.category2.id) %></td>
-    </tr>
-    <tr>
-      <th>タグ</th>
-      <td><%= link_to @item.tags.first&.tag_name, search_items_path(tag_name: @item.tags.first&.tag_name) %></td>
-    </tr>
-  </table>
-  <%= render partial: "items/like", locals: { item: @item } %>
-  <% if user_signed_in? && current_user.id == @item.user_id%>
-    <%= link_to '編集', edit_item_path(@item.id)%>
-    <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }%>
-  <% end %>
-  <a href="<%= user_path(@item.user) %>">
-    <% if @item.user.icon.attached? %>
-      <%= image_tag rails_blob_path(@item.user.icon), class: "icon" %>
-    <% else %>
-      <%= image_tag 'default_icon.jpg', class: "icon" %>
+<div class="item-contents">
+
+    <%= link_to :back do %>
+      <%= image_tag 'modoru.png', class: "modoru-icon" %>
     <% end %>
-    <%= @item.user.name %>
-  </a>
-  <%= render partial: "users/follow", locals: { user: @user } %>
+  <div class="show-item">
+    <%= image_tag @item.image, class: 'show-image' %>
+    <div class="show-side">
+      <div class="show-user-container">
+        <div class="show-user">
+          <a href="<%= user_path(@item.user) %>">
+            <% if @item.user.icon.attached? %>
+              <%= image_tag rails_blob_path(@item.user.icon), class: "show-icon" %>
+            <% else %>
+              <%= image_tag 'default_icon.jpg', class: "show-icon" %>
+            <% end %>
+            <%= @item.user.name %>
+          </a>
+           <%= render partial: "users/follow", locals: { user: @user } %>
+        </div>
+        <div class="show-option">
+          <% if user_signed_in? && current_user.id == @item.user_id%>
+            <%= link_to edit_item_path(@item.id) do %>
+              <%= image_tag 'edit.png', class: "option-icon" %>
+            <% end %> 
+            <%= link_to item_path(@item.id), data: { turbo_method: :delete } do %>
+              <%= image_tag 'destroy.png', class: "option-icon" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+  
+      <div class="show-category-container">
+        <div class="show-category">
+          <%= link_to @item.category1.name, search_items_path(category1_id: @item.category1.id), class: "category-btn" %>
+        </div>
+        <div class="show-category">
+          <%= link_to @item.category2.name, search_items_path(category2_id: @item.category2.id), class: "category-btn" %>
+        </div>
+      </div>
+      <div class="show-tag">
+        <a href="<%= search_items_path(tag_name: @item.tags.first&.tag_name) %>" class="show-link">
+          <%= image_tag "tag.png", class: "navi-icon" %>
+          <%= @item.tags.first&.tag_name %>
+        </a>
+      </div>
+
+      <div class="bottom-icon">
+        <%= render partial: "items/like", locals: { item: @item } %>
+        <%= image_tag 'comment_black.png', class: "bottom-comment" %>
+      </div>
+        <input type="text" class="show-comment" placeholder="コメントを追加" >
+      </div>
+    </div>
   </div>
 </div>

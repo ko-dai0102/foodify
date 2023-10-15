@@ -1,0 +1,89 @@
+.profile-container {
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 980px;
+  display: flex;
+}
+
+.profile-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.profile-icon-box img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  margin: 0 85px;
+}
+
+.profile-detail {
+  width: 100%;
+}
+
+.profile-1 {
+  display: flex;
+  align-items: center;
+}
+
+.profile-setting-button {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 15px;
+  margin: 0 20px;
+}
+
+.profile-message-button {
+  margin-left: 20px;
+}
+
+.profile-2 {
+  display: flex;
+  margin-top: 20px;
+}
+
+.profile-count {
+  margin-left: 20px;
+}
+
+.huri {
+  margin-top: 20px;
+}
+
+.follow a {
+  color: skyblue;
+}
+
+
+
+
+.user-navi {
+  display: flex;
+  justify-content: center;
+}
+
+.my-parts ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.my-parts ul::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.my-parts ul li {
+	float: left;
+}
+.my-parts ul li a {
+	display: block;
+	padding: .4em .8em;
+	text-decoration: none;
+	color: #333;
+	background: #fff;
+	text-align: center;
+}
+.my-parts ul li a:hover {
+	background: #eee;
+}

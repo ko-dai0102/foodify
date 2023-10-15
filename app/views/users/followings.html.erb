@@ -1,4 +1,5 @@
 <%= render "shared/header" %>
+<div class="follow-container">
 <h3>フォロー中</h3>
 <% @followings.each do |user| %>
   <a href="<%= user_path(user) %>">
@@ -13,3 +14,4 @@
     </div>
   </a>
 <% end %>
+</div>

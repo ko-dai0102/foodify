@@ -2,6 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "tag"
-import "items"
 import "preview"
 import "dropdown"

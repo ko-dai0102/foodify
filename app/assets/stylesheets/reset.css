@@ -21,5 +21,9 @@ time, mark, audio, video {
 
 
 li {
-    list-style: none;
-  }
+  list-style: none;
+}
+
+a {
+  text-decoration: none; 
+}

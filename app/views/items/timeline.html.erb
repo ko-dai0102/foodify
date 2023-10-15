@@ -1,24 +1,39 @@
 <%= render "shared/header" %>
-<div class='item-contents' id="detailed-search-result-wrapper">
-  <div class='item-lists' id="detailed-search-result">
+<div class='item-contents'>
+  <div class='timeline-item-lists'>
     <% @items.each do |item| %>
       <div class="timeline-posted-item">
-        <a href="<%= user_path(item.user) %>" class="timeline-user">
-          <% if item.user.icon.attached? %>
-            <%= image_tag rails_blob_path(item.user.icon), class: "timeline-icon" %>
-          <% else %>
-            <%= image_tag 'default_icon.jpg', class: "timeline-icon" %>
-          <% end %>
-          <%= item.user.name %>
-        </a>
-        <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image, class: 'posted-image' %>
-          <div class="item-counts">
-            <%= image_tag 'heart_white.png', class: "white-heart" %>
-            <%= item.likes.count %>
+        <div class="timeline-item-head">
+          <a href="<%= user_path(item.user) %>" class="timeline-user">
+            <% if item.user.icon.attached? %>
+              <%= image_tag rails_blob_path(item.user.icon), class: "timeline-icon" %>
+            <% else %>
+              <%= image_tag 'default_icon.jpg', class: "timeline-icon" %>
+            <% end %>
+            <%= item.user.name %>
+          </a>
+          <div class="posted-time">
+            <% if (@now - item.created_at) <= 60 * 60 %>
+              <%=((@now - item.created_at) / 60).to_i.to_s + "分前" %>
+            <% elsif (@now - item.created_at) <= 60 * 60 * 24 %>
+              <%=((@now - item.created_at) / 3600).to_i.to_s + "時間前" %>
+            <% elsif (@today - item.created_at.to_date) <= 30 %>
+              <%= (@today - item.created_at.to_date).to_i.to_s + "日前" %>
+            <% else %>
+              <%= item.created_at.strftime('%Y-%m-%d') %> 
+            <% end %>
           </div>
-        <% end %>
-        <%= render partial: "items/like", locals: { item: item } %>
+        </div>
+        <div class="timeline-item-image">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.image %>
+          <% end %>
+        </div>
+        <div class="timeline-item-bottom">
+          <%= render partial: "items/like", locals: { item: item } %>
+          <%= image_tag 'comment_black.png', class: "white-heart" %>
+        </div>
+        <input type="text" class="timeline-comment" placeholder="コメントを追加" >
       </div>
     <% end %>
   </div>

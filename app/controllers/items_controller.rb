@@ -10,7 +10,12 @@ class ItemsController < ApplicationController
   
   def timeline
     followers = current_user.followings
-    @items = Item.where(user_id: followers).order(created_at: :desc)
+    following_items = Item.where(user_id: followers)
+    my_items = Item.where(user_id: current_user.id)
+    @items = (following_items + my_items).sort_by { |item| item.created_at }.reverse
+
+    @today = Date.today #今日の日付を取得
+    @now = Time.now     #現在時刻を取得
   end
 
   def search
@@ -68,8 +73,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.item_tags.destroy_all
-    @item.destroy
+    @item.likes.destroy_all # 関連するいいねを削除
+    @item.item_tags.destroy_all # 関連するアイテムタグを削除
+    @item.destroy # アイテムを削除
     redirect_to root_path
   end
 
