@@ -70,6 +70,22 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    aws-eventstream (1.2.0)
+    aws-partitions (1.835.0)
+    aws-sdk-core (3.185.1)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.5)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.72.0)
+      aws-sdk-core (~> 3, >= 3.184.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.136.0)
+      aws-sdk-core (~> 3, >= 3.181.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.6)
+    aws-sigv4 (1.6.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -118,6 +134,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jmespath (1.6.2)
+    kgio (2.11.4)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -189,6 +207,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    raindrops (0.20.1)
     rake (13.0.6)
     ransack (4.0.0)
       activerecord (>= 6.1.5)
@@ -237,6 +256,9 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicorn (6.1.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -261,6 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  aws-sdk-s3
   bootsnap
   capybara
   debug
@@ -282,6 +305,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  unicorn (= 6.1.0)
   web-console
   webdrivers
 
