@@ -79,6 +79,14 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def tag_show
+    return nil if params[:keyword].blank?
+    @item.tag_name = params[:keyword]
+    respond_to do |format|
+    format.json { render json: { tag_content: @item.tag_name } }
+  end
+  end
+
   def incremental
     return nil if params[:keyword] == ""
     tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
