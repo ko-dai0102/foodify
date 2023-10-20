@@ -44,12 +44,10 @@ class ItemsController < ApplicationController
 
   def create
     @item_form = ItemForm.new(item_params)
-    if @item_form.valid?
-      @item_form.save
-      redirect_to root_path
-    else
-      render :new, status: :unprocessable_entity
-    end
+    input_tags = params[:input_tags].split(',')
+    @item_form.create_tags(input_tags)
+    @item_form.save
+    redirect_to root_path
   end
 
   def show
@@ -81,10 +79,8 @@ class ItemsController < ApplicationController
 
   def tag_show
     return nil if params[:keyword].blank?
-    @item.tag_name = params[:keyword]
-    respond_to do |format|
-    format.json { render json: { tag_content: @item.tag_name } }
-  end
+    tag_content = params[:keyword].split(',')  # カンマで区切られた文字列を配列に変換
+    render json: { tag_content: tag_content }
   end
 
   def incremental

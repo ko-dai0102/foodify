@@ -3,6 +3,7 @@ document.addEventListener("turbo:load", () => {
   if (tagNameInput){
     const inputElement = document.getElementById("item_form_tag_name");
     const tagButton = document.getElementById("tag-button")
+    const submitButton = document.getElementById("submit-button");
 
     inputElement.addEventListener("input", () => {
       const keyword = document.getElementById("item_form_tag_name").value;
@@ -36,34 +37,35 @@ document.addEventListener("turbo:load", () => {
     tagButton.addEventListener("click", () => {
       const keyword = document.getElementById("item_form_tag_name").value;
       const tagShow = document.getElementById("tag-show");
-
-      // 新しいタグ要素を作成
-      const newTagElement = document.createElement("div");
-      newTagElement.innerHTML = keyword;
-      tagShow.appendChild(newTagElement);
-
-      // タグを配列に追加
-      selectedTags.push(keyword);
-
-      // テキストボックスをクリア
-      document.getElementById("item_form_tag_name").value = "";
-
-      // ここからXHRを使った部分
       const XHR = new XMLHttpRequest();
       XHR.open("GET", `/items/tag_show/?keyword=${keyword}`, true);
       XHR.responseType = "json";
-
+      XHR.send();
       XHR.onload = () => {
         if (XHR.response) {
           const tagContent = XHR.response.tag_content;
-          tagShow.innerHTML = tagContent;
+          tagContent.forEach((tag) => {
+            const newTagElement = document.createElement("div");
+            newTagElement.innerHTML = tag;
+            tagShow.appendChild(newTagElement);
+            selectedTags.push(tag);
+            console.log(selectedTags);
+          })
         }
       };
-
-      XHR.send();
+      document.getElementById("item_form_tag_name").value = "";
     });
 
 
+    submitButton.addEventListener("click", () => {
+      const tagsString = selectedTags.join(","); // カンマでタグを区切る
+
+      // AJAXリクエストを使用してサーバーにデータを送信
+      const XHR = new XMLHttpRequest();
+      XHR.open("POST", `/items/create/?input_tags=${tagsString}`, true);
+      XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      XHR.send();
+    });
 
   };
 }); 
