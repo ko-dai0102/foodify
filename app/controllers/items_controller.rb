@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
 
   def create
     @item_form = ItemForm.new(item_params)
-    input_tags = params[:input_tags].split(',')
+    input_tags = params[:input_tags][:tag_list].split(',')
     @item_form.create_tags(input_tags)
     @item_form.save
     redirect_to root_path
