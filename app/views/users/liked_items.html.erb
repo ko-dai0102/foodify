@@ -69,6 +69,7 @@
             <%= image_tag 'heart_white.png', class: "white-heart" %>
             <%= content_tag(:span, item.likes.count, class: "white-count") %>
             <%= image_tag 'comment.png', class: "white-heart" %>
+            <%= content_tag(:span, item.comments.count) %>
           </div>
         <% end %>
       </div>

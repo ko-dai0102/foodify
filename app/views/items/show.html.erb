@@ -62,12 +62,16 @@
       <div class="bottom-icon">
         <%= render partial: "items/like", locals: { item: @item } %>
         <%= image_tag 'comment_black.png', class: "bottom-comment" %>
+        <%= content_tag(:span, @item.comments.count, class: "heart-before-text") %>
       </div>
+
       <div class="comment-form">
         <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
           <%= f.text_area :text , class: "comment-text"%>
           <%= f.submit "コメントする", class: "comment-submit" %>
         <% end %>
+      </div>
+
     </div>
   </div>
 </div>
