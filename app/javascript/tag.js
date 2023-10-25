@@ -37,6 +37,7 @@ document.addEventListener("turbo:load", () => {
     tagButton.addEventListener("click", () => {
       const keyword = document.getElementById("item_form_tag_name").value;
       const tagShow = document.getElementById("tag-show");
+      const tagHidden = document.getElementById("tag-hidden");
       const XHR = new XMLHttpRequest();
       XHR.open("GET", `/items/tag_show/?keyword=${keyword}`, true);
       XHR.responseType = "json";
@@ -49,23 +50,15 @@ document.addEventListener("turbo:load", () => {
             newTagElement.innerHTML = tag;
             tagShow.appendChild(newTagElement);
             selectedTags.push(tag);
+            tagHidden.value = selectedTags.join(",");
             console.log(selectedTags);
+            console.log(tagHidden.value);
           })
         }
       };
       document.getElementById("item_form_tag_name").value = "";
     });
 
-
-    submitButton.addEventListener("click", () => {
-      const tagsString = selectedTags.join(","); // カンマでタグを区切る
-
-      // AJAXリクエストを使用してサーバーにデータを送信
-      const XHR = new XMLHttpRequest();
-      XHR.open("POST", `/items/create/?input_tags=${tagsString}`, true);
-      XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      XHR.send();
-    });
-
+    
   };
 }); 

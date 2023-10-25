@@ -44,9 +44,8 @@ class ItemsController < ApplicationController
 
   def create
     @item_form = ItemForm.new(item_params)
-    input_tags = params[:input_tags][:tag_list].split(',')
-    @item_form.create_tags(input_tags)
-    @item_form.save
+    input_tags = tag_params[:tag_hidden].split(',')
+    @item_form.save(input_tags)
     redirect_to root_path
   end
 
@@ -93,7 +92,11 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item_form).permit(:category1_id, :category2_id, :tag_name, :image).merge(user_id: current_user.id)
+    params.require(:item_form).permit(:category1_id, :category2_id, :image).merge(user_id: current_user.id)
+  end
+
+  def tag_params
+    params.require(:item_form).permit(:tag_hidden)
   end
 
   def set_item

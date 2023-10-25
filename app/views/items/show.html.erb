@@ -40,10 +40,12 @@
         </div>
       </div>
       <div class="show-tag">
-        <a href="<%= search_items_path(tag_name: @item.tags.first&.tag_name) %>" class="show-link">
-          <%= image_tag "tag.png", class: "navi-icon" %>
-          <%= @item.tags.first&.tag_name %>
-        </a>
+        <% @item.tags.each do |tag| %>
+          <a href="<%= search_items_path(tag_name: tag.tag_name) %>" class="show-link">
+            <%= image_tag "tag.png", class: "navi-icon" %>
+            <%= tag.tag_name %>
+          </a>
+        <% end %>
       </div>
 
       <div class="bottom-icon">

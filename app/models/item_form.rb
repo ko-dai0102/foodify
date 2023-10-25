@@ -9,23 +9,15 @@ class ItemForm
     validates :user_id
   end
 
-  def save
+  def save(input_tags)
     item = Item.create(image:, category1_id:, category2_id:, user_id:)
-    tag = Tag.where(tag_name:).first_or_initialize
-    tag.save
-    ItemTag.create(item_id: item.id, tag_id: tag.id)
 
-    #selectedTags.each do |tag_name|
-      #tag = Tag.where(tag_name:).first_or_initialize
-      #tag.save
-      #ItemTag.create(item_id: item.id, tag_id: tag.id)
-    #end
-  end
-
-  def create_tags(input_tags)
-    input_tags.each do |tag|                     # splitで分けたtagをeach文で取得する
-      new_tag = Tag.find_or_create_by(name: tag) # tagモデルに存在していれば、そのtagを使用し、なければ新規登録する
-      tags << new_tag                            # 登録するtopicのtagに紐づける（中間テーブルにも反映される）
+    input_tags.each do |tag|
+      tag_name = tag.strip
+      new_tag = Tag.where(tag_name: tag_name).first_or_initialize
+      new_tag.tag_name = tag_name  # タグ名を設定
+      new_tag.save
+      ItemTag.create(item_id: item.id, tag_id: new_tag.id)
     end
   end
 
