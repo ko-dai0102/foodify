@@ -73,3 +73,16 @@
 
 - belongs_to :following, class_name: "User"
 - belongs_to :follower, class_name: "User"
+
+## Comments テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| text   | text       | null: false                    |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item

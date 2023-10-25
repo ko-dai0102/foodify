@@ -88,8 +88,6 @@
 
 .show-tag {
   margin-top: 15px;
-  padding-bottom: 100%;
-  margin-bottom: 60%;
 }
 
 .show-tag a {
@@ -101,6 +99,20 @@
 .show-tag img {
   width: 20px;
   height: 20px;
+}
+
+.comments {
+  margin: 10px 0 0 10px;
+}
+
+.comment{
+  display: flex;
+}
+
+.comment-form form {
+  display: flex;
+  align-items: center;
+  margin: 10px 0 0 10px;
 }
 
 .bottom-icon {

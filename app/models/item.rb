@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   has_many :item_tags
   has_many :tags, through: :item_tags
   has_many :likes
+  has_many :comments
 
   has_one_attached :image
 

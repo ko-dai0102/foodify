@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :items do
     resource :likes, only: [:create, :destroy]
+    resource :comments, only: :create
     collection do
       get 'tag_show'
       get 'search'
