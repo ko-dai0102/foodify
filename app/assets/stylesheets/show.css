@@ -58,6 +58,12 @@
   margin-right: 7px;
 }
 
+.show-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
 .show-option {
   margin-left: 164px;
 }
@@ -107,6 +113,7 @@
 
 .comment{
   display: flex;
+  align-items: center;
 }
 
 .comment-form form {
