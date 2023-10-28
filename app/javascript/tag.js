@@ -2,8 +2,18 @@ document.addEventListener("turbo:load", () => {
   const tagNameInput = document.querySelector("#item_form_tag_name");
   if (tagNameInput){
     const inputElement = document.getElementById("item_form_tag_name");
-    const tagButton = document.getElementById("tag-button")
-    const submitButton = document.getElementById("submit-button");
+    const tagButton = document.getElementById("tag-button");
+    const searchResult = document.getElementById("search-result");
+    const clickElements = [];
+
+    // clickElementをクリックした際に他の全てのclickElementを削除
+    function removeAllClickElements() {
+      searchResult.innerHTML = "";
+      clickElements.forEach((clickElement) => {
+        clickElement.remove();
+      });
+      clickElements.length = 0;
+    }
 
     inputElement.addEventListener("input", () => {
       const keyword = document.getElementById("item_form_tag_name").value;
@@ -12,7 +22,6 @@ document.addEventListener("turbo:load", () => {
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
-        const searchResult = document.getElementById("search-result");
         searchResult.innerHTML = "";
         if (XHR.response) {
           const tagName = XHR.response.keyword;
@@ -23,10 +32,14 @@ document.addEventListener("turbo:load", () => {
             childElement.innerHTML = tag.tag_name;
             searchResult.appendChild(childElement);
             const clickElement = document.getElementById(tag.id);
-            clickElement.addEventListener("click", () => {
-              document.getElementById("item_form_tag_name").value = clickElement.textContent;
-              clickElement.remove();
-            });
+            if (clickElement) {
+              clickElement.addEventListener("click", () => {
+                document.getElementById("item_form_tag_name").value = clickElement.textContent;
+                while (searchResult.firstChild) {
+                  searchResult.removeChild(searchResult.firstChild);
+                }
+              });
+            }
           });
         };
       };
@@ -43,6 +56,7 @@ document.addEventListener("turbo:load", () => {
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
+        removeAllClickElements();
         if (XHR.response) {
           const tagContent = XHR.response.tag_content;
           tagContent.forEach((tag) => {

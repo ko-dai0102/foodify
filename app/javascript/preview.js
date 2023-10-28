@@ -9,6 +9,9 @@ document.addEventListener('turbo:load', function(){
     const file = e.target.files[0];
     const blob = window.URL.createObjectURL(file);
 
+    // 既存のプレビューをクリア
+    previewSpace.innerHTML = '';
+
     // divを生成
     const previewWrapper = document.createElement('div');
     previewWrapper.setAttribute('class', 'preview');

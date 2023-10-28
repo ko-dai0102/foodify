@@ -1,11 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
-
   def create
     @comment = Comment.new(comment_params)
-    @item = Item.find(params[:item_id])
     if @comment.save
-      CommentChannel.broadcast_to @item, { comment: @comment, user: @comment.user }
+      redirect_to item_path(params[:item_id])
     end
   end
 

@@ -86,3 +86,8 @@
   align-items: center;
   text-decoration: none;
 }
+
+.preview-image {
+  height: 200px;
+  width: 200px;
+}

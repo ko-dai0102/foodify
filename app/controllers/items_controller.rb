@@ -5,22 +5,27 @@ class ItemsController < ApplicationController
   before_action :redirect_to_show, only: [:edit, :update]
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.includes(:likes, :comments).order(created_at: :desc)
   end
   
   def timeline
     followers = current_user.followings
-    following_items = Item.where(user_id: followers)
-    my_items = Item.where(user_id: current_user.id)
-    @items = (following_items + my_items).sort_by { |item| item.created_at }.reverse
-
-    @today = Date.today #今日の日付を取得
-    @now = Time.now     #現在時刻を取得
+  
+    # フォロー中のユーザーのIDの配列を取得
+    following_user_ids = followers.pluck(:id)
+  
+    # フォロー中のユーザーと自分の投稿を取得
+    @items = Item.where(user_id: following_user_ids + [current_user.id])
+                .includes(:user, :image_attachment, :likes, :comments)
+                .order(created_at: :desc)
+  
+    @today = Date.today # 今日の日付を取得
+    @now = Time.now     # 現在時刻を取得
   end
 
   def search
     @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true).includes(:item_tags, :tags).order('RAND()')
+    @items = @q.result(distinct: true).includes(:item_tags, :tags, :likes, :comments).order('RAND()')
 
     if params[:category1_id].present?
       category1 = Category1.find_by(id: params[:category1_id])

@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :liked_items, :followers, :followings]
 
   def show
-    @items = @user.items.order(created_at: :desc)
+    @user = User.find(params[:id])
+    @items = @user.items.includes(:likes, :comments).order(created_at: :desc)
   end
 
   def edit
@@ -33,7 +34,10 @@ class UsersController < ApplicationController
   end
 
   def liked_items
-    @liked_items = Like.where(user_id: @user.id).joins(:item).order("likes.created_at DESC").map(&:item)
+    @liked_items = Item.joins(:likes).where(likes: { user_id: @user.id })
+                        .includes(:likes, :comments)
+                        .order("likes.created_at DESC")
+                        .distinct
   end
 
   def followers

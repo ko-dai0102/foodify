@@ -38,7 +38,6 @@
       <div class="profile-1">
         <%= @user.name %>
         <%= render partial: "users/follow", locals: { user: @user } %>
-        <%= button_to 'メッセージを送信', class: "profile-message-button" %>
       </div>
       <div class="profile-2">
         <%= "投稿#{@user.items.count}件"%>
