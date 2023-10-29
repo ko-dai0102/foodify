@@ -77,6 +77,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.comments.destroy_all
     @item.likes.destroy_all # 関連するいいねを削除
     @item.item_tags.destroy_all # 関連するアイテムタグを削除
     @item.destroy # アイテムを削除
