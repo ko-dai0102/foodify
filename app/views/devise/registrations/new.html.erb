@@ -2,7 +2,7 @@
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
-      会員情報入力
+      ユーザー情報入力
     </h1>
   </div>
 
@@ -48,14 +48,8 @@
     <div class="sessions-navi">
       <a href="/users/sign_in">ログインはこちら</a>
       <a href="/">トップページに戻る</a>
-      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <%= f.hidden_field :email, value: "test@test.com" %>
-        <%= f.hidden_field :password, value: "123qwe" %>
-        <%= f.submit "テストログイン", class: 'header-search-button' %>
-      <% end %>
     </div>
   </div>
 
-  
 </div>
 <% end %>
