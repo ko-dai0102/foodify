@@ -27,21 +27,29 @@
           </a>
         </div>
 
+        <!--
         <div class="navi-content">
           <a href="#" class="navi-link">
             <%= image_tag "tuuti.png", class: "navi-icon" %>
             <div class="navi-text">通知</div>
           </a>
         </div>
+        -->
         
         <% if user_signed_in? %>
-        <div class="navi-content">
-          <a href="<%= liked_items_user_path(current_user) %>" class="navi-link">
-            <%= image_tag "iine.png", class: "navi-icon" %>
-            <div class="navi-text">いいね</div>
-          </a>
-        </div>
+          <div class="navi-content">
+            <a href="<%= liked_items_user_path(current_user) %>" class="navi-link">
+              <%= image_tag "iine.png", class: "navi-icon" %>
+              <div class="navi-text">いいね</div>
+            </a>
+          </div>
         <% else %>
+          <div class="navi-content">
+            <a href="<%= new_user_session_path %>" class="navi-link">
+              <%= image_tag "iine.png", class: "navi-icon" %>
+              <div class="navi-text">いいね</div>
+            </a>
+          </div>
         <% end %>
 
 
@@ -78,13 +86,11 @@
         </div>
       </div>
     <% else %>
-      <div class="not-login">
-        <div class="navi-content">
-          <a href="<%= new_user_session_path %>" class="navi-link">
-            <%= image_tag "login.png", class: "navi-icon" %>
-            <div class="navi-text">ログイン</div>
-          </a>
-        </div>
+      <div class="navi-content">
+        <a href="<%= new_user_session_path %>" class="navi-link">
+          <%= image_tag "login.png", class: "navi-icon" %>
+          <div class="navi-text">ログイン</div>
+        </a>
       </div>
     <% end %>
 

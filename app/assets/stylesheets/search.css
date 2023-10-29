@@ -1,9 +1,15 @@
-#detailed-search-form{
-  background-color: white;
-  width: 350px;
+.search-content {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.search-form {
+  width: 100%;
+  margin-left: 10px;
 }
 
 .search-field{
+  width: 225px;
   margin: 0.5rem 0;
 }
 
