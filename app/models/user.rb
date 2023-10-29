@@ -20,5 +20,12 @@ class User < ApplicationRecord
     return follower.present?
   end
 
+  def self.guest
+    user = find_or_create_by!(email: "test@test.com") do |user|
+      user.name = "テストユーザー"
+      user.password = "123qwe"
+    end
+  end
+
   validates :name, presence: true
 end

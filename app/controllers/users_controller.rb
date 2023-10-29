@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     @followings = @user.followings
   end
 
+
   private
 
   def set_user

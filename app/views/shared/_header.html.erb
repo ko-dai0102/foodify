@@ -5,24 +5,28 @@
         <%= link_to "Foodify", root_path %>
       </div>
       <div class="side-navi">
+
         <div class="navi-content">
           <a href="<%= root_path %>" class="navi-link">
             <%= image_tag "home.png", class: "navi-icon" %>
             <div class="navi-text">ホーム</div>
           </a>
         </div>
+
         <div class="navi-content">
           <a href="<%= search_items_path %>" class="navi-link">
             <%= image_tag "kensaku.png", class: "navi-icon" %>
             <div class="navi-text">見つける</div>
           </a>
         </div>
+
         <div class="navi-content">
           <a href="<%= timeline_items_path %>" class="navi-link">
             <%= image_tag "time.png", class: "navi-icon" %>
             <div class="navi-text">タイムライン</div>
           </a>
         </div>
+
         <div class="navi-content">
           <a href="#" class="navi-link">
             <%= image_tag "tuuti.png", class: "navi-icon" %>
@@ -53,27 +57,36 @@
             </a>
           </div>
         <% else %>
-          <%= link_to 'ログイン', new_user_session_path %>
-          <%= link_to '新規登録', new_user_registration_path %>
         <% end %>
+
         <div class="navi-content-create">
           <a href="<%= new_item_path %>" class="navi-link-create">
             <div class="navi-text">投稿する</div>
           </a>
         </div>
+
       </div>
     </div>
     
     <% if user_signed_in? %>
-    <div class="side-bottom">
-      <div class="bottom-content">
-        <a href="<%= edit_user_path(current_user) %>" class="navi-link">
-          <%= image_tag "setting.png", class: "navi-icon" %>
-          <div class="navi-text">設定</div>
-        </a>
+      <div class="side-bottom">
+        <div class="bottom-content">
+          <a href="<%= edit_user_path(current_user) %>" class="navi-link">
+            <%= image_tag "setting.png", class: "navi-icon" %>
+            <div class="navi-text">設定</div>
+          </a>
+        </div>
       </div>
-    </div>
     <% else %>
+      <div class="not-login">
+        <div class="navi-content">
+          <a href="<%= new_user_session_path %>" class="navi-link">
+            <%= image_tag "login.png", class: "navi-icon" %>
+            <div class="navi-text">ログイン</div>
+          </a>
+        </div>
+      </div>
     <% end %>
+
   </div>
 </header>
