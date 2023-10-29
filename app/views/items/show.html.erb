@@ -1,11 +1,14 @@
 <%= render "shared/header" %>
 <div class="item-contents">
 
-    <%= link_to :back do %>
-      <%= image_tag 'modoru.png', class: "modoru-icon" %>
-    <% end %>
-  <div class="show-item">
+  <div class="show-item-container">
+
+    <div>
+      <%= link_to "←", :back,  class: "left-arrow"%>
+    </div>
+
     <%= image_tag @item.image, class: 'show-image' %>
+
     <div class="show-side">
       <div class="show-user-container">
         <div class="show-user">
@@ -20,6 +23,9 @@
            <%= render partial: "users/follow", locals: { user: @user } %>
         </div>
         <div class="show-option">
+          <%= render partial: "items/like", locals: { item: @item } %>
+          <%= image_tag 'comment_black.png', class: "bottom-comment" %>
+          <%= content_tag(:span, @item.comments.count, class: "heart-before-text") %>
           <% if user_signed_in? && current_user.id == @item.user_id%>
             <%= link_to edit_item_path(@item.id) do %>
               <%= image_tag 'edit.png', class: "option-icon" %>
@@ -43,21 +49,22 @@
       <div class="show-tag">
         <% @item.tags.each do |tag| %>
           <a href="<%= search_items_path(tag_name: tag.tag_name) %>" class="show-link">
-            <%= image_tag "tag.png", class: "navi-icon" %>
+            <%= image_tag "tag.png", class: "tag-icon" %>
             <%= tag.tag_name %>
           </a>
         <% end %>
       </div>
 
+      <h1 class="comment-title">コメント</h1>
       <div class="comments" id="comments">
         <% @item.comments.each do |comment| %>
           <div class="comment">
             <p class="user-info">
               <a href="<%= user_path(@item.user) %>">
                 <% if comment.user.icon.attached? %>
-                  <%= image_tag rails_blob_path(comment.user.icon), class: "show-icon" %>
+                  <%= image_tag rails_blob_path(comment.user.icon), class: "comment-icon" %>
                 <% else %>
-                  <%= image_tag 'default_icon.jpg', class: "show-icon" %>
+                  <%= image_tag 'default_icon.jpg', class: "comment-icon" %>
                 <% end %>
               </a>
             </p>
@@ -66,16 +73,12 @@
         <% end %>
       </div>
 
-      <div class="bottom-icon">
-        <%= render partial: "items/like", locals: { item: @item } %>
-        <%= image_tag 'comment_black.png', class: "bottom-comment" %>
-        <%= content_tag(:span, @item.comments.count, class: "heart-before-text") %>
-      </div>
+      
 
       <div class="comment-form">
         <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
-          <%= f.text_area :text , class: "comment-text"%>
-          <%= f.submit "コメントする", class: "comment-submit" %>
+          <%= f.text_area :text, class: "show-comment-text", placeholder: "コメントを入力" %>
+          <%= f.submit "コメントする", class: "show-comment-submit" %>
         <% end %>
       </div>
 

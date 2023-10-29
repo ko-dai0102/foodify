@@ -13,7 +13,7 @@ document.addEventListener("turbo:load", () => {
         clickElement.remove();
       });
       clickElements.length = 0;
-    }
+    };
 
     inputElement.addEventListener("input", () => {
       const keyword = document.getElementById("item_form_tag_name").value;
@@ -37,15 +37,15 @@ document.addEventListener("turbo:load", () => {
                 document.getElementById("item_form_tag_name").value = clickElement.textContent;
                 while (searchResult.firstChild) {
                   searchResult.removeChild(searchResult.firstChild);
-                }
+                };
               });
-            }
+            };
           });
         };
       };
     });
 
-    const selectedTags = [];
+    let selectedTags = [];
 
     tagButton.addEventListener("click", () => {
       const keyword = document.getElementById("item_form_tag_name").value;
@@ -61,14 +61,23 @@ document.addEventListener("turbo:load", () => {
           const tagContent = XHR.response.tag_content;
           tagContent.forEach((tag) => {
             const newTagElement = document.createElement("div");
-            newTagElement.innerHTML = tag;
+            newTagElement.className = "select-tag";
+            newTagElement.innerHTML = `${tag} <span class="remove-tag">x</span>`;
             tagShow.appendChild(newTagElement);
             selectedTags.push(tag);
             tagHidden.value = selectedTags.join(",");
             console.log(selectedTags);
             console.log(tagHidden.value);
-          })
-        }
+
+            newTagElement.querySelector(".remove-tag").addEventListener("click", (event) => {
+              const removedTag = event.target.previousSibling.textContent.trim(); // クリックされたタグを取得
+              selectedTags = selectedTags.filter((tag) => tag !== removedTag); // 選択したタグから削除
+              tagHidden.value = selectedTags.join(","); // tagHiddenからも削除
+              tagShow.removeChild(newTagElement); // タグ表示から削除
+            });
+
+          });
+        };
       };
       document.getElementById("item_form_tag_name").value = "";
     });

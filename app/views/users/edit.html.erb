@@ -1,10 +1,25 @@
 <%= render "shared/header" %>
-<a href="<%= edit_icon_user_path(current_user) %>">
-  <% if @user.icon.attached? %>
-    <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
-  <% else %>
-    <%= image_tag 'default_icon.jpg', class: "icon" %>
-  <% end %>
-</a>
-<%= link_to @user.name, edit_name_user_path(current_user) %>
-<%= link_to "アカウント情報編集", edit_user_registration_path %>
+<div class="user-edit-container">
+
+ <div class="edit-icon-container">
+  <div>アイコンを変更する</div>
+  <a href="<%= edit_icon_user_path(current_user) %>">
+    <% if @user.icon.attached? %>
+      <%= image_tag rails_blob_path(@user.icon), class: "edit-icon" %>
+    <% else %>
+      <%= image_tag 'default_icon.jpg', class: "edit-icon" %>
+    <% end %>
+  </a>
+ </div>
+
+ <div class="edit-name-container">
+  <div>名前を変更する</div>
+  <%= link_to @user.name, edit_name_user_path(current_user) %>
+ </div>
+
+ <div class="edit-account-container">
+  <div>アカウントの情報を変更する</div>
+  <%= link_to "こちらから", edit_user_registration_path %>
+  </div>
+
+</div>

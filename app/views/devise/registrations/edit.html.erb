@@ -1,5 +1,6 @@
 <%= render "shared/header" %>
-<h2>ユーザー情報編集 <%= resource_name.to_s.humanize %></h2>
+<div class="edit-settings">
+<h2>アカウント編集</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -38,3 +39,4 @@
 <% end %>
 
 <%= link_to "戻る", :back %>
+</div>

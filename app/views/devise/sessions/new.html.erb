@@ -25,14 +25,15 @@
   </div>
   <div class='login-btn'>
     <%= f.submit "ログイン" ,class:"login-red-btn" %>
-    <a href="/users/sign_up">新規登録はこちら</a>
-    <a href="/">トップページに戻る</a>
+    <div class="sessions-navi">
+      <a href="/users/sign_up">新規登録はこちら</a>
+      <a href="/">トップページに戻る</a>
+      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+        <%= f.hidden_field :email, value: "test@test.com" %>
+        <%= f.hidden_field :password, value: "123qwe" %>
+        <%= f.submit "テストログイン", class: 'header-search-button' %>
+      <% end %>
+    </div>
   </div>
 </div>
-<% end %>
-
-<%= form_with model: @user, url: user_session_path, local: true do |f| %>
-  <%= f.hidden_field :email, value: "test@test.com" %>
-  <%= f.hidden_field :password, value: "123qwe" %>
-  <%= f.submit "テストログイン" %>
 <% end %>

@@ -9,3 +9,21 @@ span{
 .follow-conainer {
   margin: 30px 300px;
 }
+
+#tag-show {
+  display: flex;
+}
+
+.select-tag {
+  margin-right: 10px;
+}
+
+.sessions-navi {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.sessions-navi a {
+  margin-bottom: 15px;
+}

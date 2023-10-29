@@ -1,0 +1,15 @@
+.follow-container {
+  margin: 30px 0 0 30px;
+}
+
+.follow-user {
+  display: flex;
+  align-items: center;
+}
+
+.follow-user a {
+  display: flex;
+  align-items: center;
+  width: 250px;
+  margin-right: 20px;
+}

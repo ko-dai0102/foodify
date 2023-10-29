@@ -18,7 +18,7 @@
       <label class="form-text">ニックネーム</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.text_area :name, class:"input-default", id:"name", placeholder:"例) furima太郎", maxlength:"40" %>
+    <%= f.text_area :name, class:"input-default", id:"name", placeholder:"例) food太郎", maxlength:"40" %>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -45,8 +45,15 @@
   
   <div class='register-btn'>
     <%= f.submit "登録" ,class:"register-red-btn" %>
-    <a href="/users/sign_in">ログインはこちら</a>
-    <a href="/">トップページに戻る</a>
+    <div class="sessions-navi">
+      <a href="/users/sign_in">ログインはこちら</a>
+      <a href="/">トップページに戻る</a>
+      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+        <%= f.hidden_field :email, value: "test@test.com" %>
+        <%= f.hidden_field :password, value: "123qwe" %>
+        <%= f.submit "テストログイン", class: 'header-search-button' %>
+      <% end %>
+    </div>
   </div>
 
   

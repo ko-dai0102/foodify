@@ -1,0 +1,29 @@
+.user-edit-container {
+  margin: 30px 0 0 30px;
+  text-decoration: none;
+}
+
+.edit-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.edit-icon-container {
+
+}
+
+.edit-name-container {
+  margin-top: 20px;
+}
+
+.edit-account-container {
+  margin-top: 20px;
+}
+
+.edit-settings {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 0 30px;
+}

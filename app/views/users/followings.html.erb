@@ -3,7 +3,7 @@
 <h3>フォロー中</h3>
 <% @followings.each do |user| %>
   <a href="<%= user_path(user) %>">
-    <div>
+    <div class="follow-user">
       <% if user.icon.attached? %>
         <%= image_tag rails_blob_path(user.icon), class: "icon" %>
       <% else %>

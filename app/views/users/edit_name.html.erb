@@ -1,4 +1,5 @@
 <%= render "shared/header" %>
+<div class="edit-settings">
 <h2>ユーザー名編集</h2>
 
 <%= form_for(@user, url: update_name_user_path(@user), method: :patch) do |f| %>
@@ -14,4 +15,5 @@
   </div>
 <% end %>
 
-<%= link_to '戻る', @user %>
+<%= link_to '戻る', :back %>
+</div>

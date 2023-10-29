@@ -1,3 +1,5 @@
 <%= render "shared/header" %>
+<div class="follow-container">
 <h3>編集ページ</h3>
 <%= render partial: "form", locals: {url: item_path(@item.id), method: :patch}%>
+</div>

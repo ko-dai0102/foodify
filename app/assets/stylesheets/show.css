@@ -1,18 +1,22 @@
-.show-item {
-  display: flex;
-  margin: 90px 60px 0 60px;
-  border: 1px solid lightgray;
-  border-radius: 20px;
-  height: 80vh;
+.show-item-container {
+  margin: 30px 30% 0 10%;
+}
+
+.left-arrow {
+  font-size: 25px;
 }
 
 .show-image {
-  height: 100%;
-  width: 70%;
+  height: 60vh;
+  width: 100%;
+  margin-top: 10px;
   box-sizing: border-box;
   object-fit: cover;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-radius: 5px;
+}
+
+.show-side {
+  margin-bottom: 20px;
 }
 
 .show-side a {
@@ -23,8 +27,8 @@
 .show-user-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  margin: 10px;
 }
 
 .show-user {
@@ -36,6 +40,7 @@
 .show-user a {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 
 .show-user img {
@@ -47,41 +52,51 @@
 }
 
 .show-icon {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
 .show-option {
-  margin-left: 164px;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .option-icon {
-  height: 24px;
-  width: 24px;
+  height: 22px;
+  width: 22px;
+  display: flex;
+  align-items: center;
+  margin-left: 7px;
 }
 
 .show-category-container {
-  margin-top: 25px;
+  margin-top: 15px;
   display: flex;
-  justify-content: space-around;
 }
 
 .show-category {
   padding: 5px 0;
   height: 20px;
-  width: 45%;
+  width: 20%;
   background-image: linear-gradient(90deg, rgba(247, 93, 139, 1), rgba(254, 220, 64, 1));
   border-radius: 20px;
   text-align: center;
+  margin-right: 10px;
 }
 
 .show-category a {
   color: white;
 }
 
+.show-link {
+  margin-right: 18px;
+}
+
 .show-tag {
   margin-top: 15px;
+  display: flex;
 }
 
 .show-tag a {
@@ -95,13 +110,27 @@
   height: 20px;
 }
 
+.tag-icon {
+  margin-right: 2px;
+}
+
+.comment-title {
+  margin-top: 50px;
+}
+
 .comments {
-  margin: 10px 0 0 10px;
+  margin: 20px 0 0 10px;
 }
 
 .comment{
   display: flex;
   align-items: center;
+}
+
+.comment-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 
 .comment-form form {
@@ -132,7 +161,21 @@
   font-size: 15px;
 }
 
-.modoru-icon {
-  float: right; /* 画面右端に配置 */
-  margin: 40px 40px 0 0; /* 右側の余白を調整 */
+.show-comment-text {
+  border: none;
+  border-bottom: 1px solid lightgray;
+  width: 50%;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.show-comment-text:focus {
+  outline: none;
+}
+
+.show-comment-submit {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 6px;
 }
