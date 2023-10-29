@@ -25,7 +25,9 @@
           <div class="search-field">
             <div class="checkbox-category">
               <%= f.collection_check_boxes(:category1_id_in, Category1.all, :id, :name) do |b| %>
-                <%= b.label { b.check_box + b.text } %>
+                <label class="custom-checkbox"> <!-- ラベルにカスタムクラスを追加 -->
+                  <%= b.check_box + b.text %>
+                </label>
               <% end %>
             </div>
           </div>
@@ -37,10 +39,10 @@
             </div>
           </div>
           <div class="search-field">
-            <%= f.text_field :tags_tag_name_cont, placeholder: 'タグ名', id: 'item_form_tag_name' %>
+            <%= f.text_field :tags_tag_name_cont, placeholder: 'タグ名', id: 'item_form_tag_name', class: 'header-search-field' %>
             <div id="search-result"></div>
             </div>
-          <%= f.submit '検索' %>
+          <%= f.submit '検索', class: 'header-search-button' %>
         <% end %>
         </div>
 

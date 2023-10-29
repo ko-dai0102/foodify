@@ -29,13 +29,29 @@
 #search-result {
   position: absolute;
   z-index: 1;
-  width: 200px;
+  width: 100%;
 }
 
 .child{
-  margin: 5px;
   border: 1px solid #dedede;
   background-color: #F4F4F4;
-  padding: 5px;
+  padding: 7px 5px;
   font-size: 12px;
+}
+
+.header-search-field {
+  border: 0.5px solid gray;
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+
+.header-search-button {
+  width: 25%;
+  border: 0.5px solid gray;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.checkbox-category label {
+  cursor: pointer;
 }
