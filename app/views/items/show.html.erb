@@ -55,32 +55,11 @@
         <% end %>
       </div>
 
-      <h1 class="comment-title">コメント</h1>
-      <div class="comments" id="comments">
-        <% @item.comments.each do |comment| %>
-          <div class="comment">
-            <p class="user-info">
-              <a href="<%= user_path(@item.user) %>">
-                <% if comment.user.icon.attached? %>
-                  <%= image_tag rails_blob_path(comment.user.icon), class: "comment-icon" %>
-                <% else %>
-                  <%= image_tag 'default_icon.jpg', class: "comment-icon" %>
-                <% end %>
-              </a>
-            </p>
-            <p><%= comment.text%></p>
-          </div>
-        <% end %>
-      </div>
-
       
 
-      <div class="comment-form">
-        <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
-          <%= f.text_area :text, class: "show-comment-text", placeholder: "コメントを入力" %>
-          <%= f.submit "コメントする", class: "show-comment-submit" %>
-        <% end %>
-      </div>
+      <%= turbo_frame_tag 'comments' do %>
+        <%= render partial: "items/comments", locals: { item: @item, comments: @comments, comment: @comment } %>
+      <% end %>
 
     </div>
   </div>

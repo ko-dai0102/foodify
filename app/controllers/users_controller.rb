@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @items = @user.items.includes(:likes, :comments).order(created_at: :desc)
+    @followers = @user.followers
+    @followings = @user.followings
   end
 
   def edit
