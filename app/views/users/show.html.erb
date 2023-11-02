@@ -19,8 +19,9 @@
     </div>
     <div class="profile-2">
     <%= "投稿#{@user.items.count}件"%>
-    <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count" %>
-    <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count" %>
+    <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div>
+    <%#= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
+    <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
     </div>
     <div class="huri">
       フリーコメント欄
@@ -41,8 +42,8 @@
       </div>
       <div class="profile-2">
         <%= "投稿#{@user.items.count}件"%>
-        <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count" %>
-        <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count" %>
+        <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
+        <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
       </div>
       <div class="huri">
         フリーコメント欄
@@ -51,13 +52,37 @@
   <% end %>
  </div>
 
-<div class="user-navi">
-  <nav class="my-parts">
-	<ul>
-		<li><a href="#"></a></li>
-    <li><%= link_to "投稿", user_path(@user) %></li>
-		<li><%= link_to "いいね", liked_items_user_path(@user.id) %></li>
-</div>
+  <div id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>フォロワー</h1>
+        <span class="modalClose">×</span>
+      </div>
+      <div class="modal-body">
+        <% @followers.each do |user| %>
+        <a href="<%= user_path(user) %>">
+          <div class="follow-user">
+            <% if user.icon.attached? %>
+              <%= image_tag rails_blob_path(user.icon), class: "icon" %>
+            <% else %>
+              <%= image_tag 'default_icon.jpg', class: "icon" %>
+            <% end %>
+            <%= user.name %>
+            <%= render partial: "users/list_follow", locals: { user: user } %>
+          </div>
+        </a>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-navi">
+    <nav class="my-parts">
+    <ul>
+      <li><a href="#"></a></li>
+      <li><%= link_to "投稿", user_path(@user) %></li>
+      <li><%= link_to "いいね", liked_items_user_path(@user.id) %></li>
+  </div>
 
   <div class='item-lists'>
     <% @items.each do |item| %>
@@ -76,6 +101,7 @@
   </div>
 </div>
 
+<!--
 <center>
   <a href="#modal-01" class="modal-button">
     モーダルを表示 
@@ -104,3 +130,4 @@
     <a href="#!" class="modal-close"><i class="far fa-times-circle"></i></a>
   </div>
 </div>
+-->

@@ -1,12 +1,31 @@
+<%# if user_signed_in? %>
+  <%# if current_user == user %>
+  <%# elsif user.followed_by?(current_user) %>
+    <%#= link_to "フォロー中", list_destroy_user_relationships_path(user.id), class: "follow-button", data: { turbo_method: :delete } %>
+  <%# else %>
+    <%#= link_to "フォローする", list_create_user_relationships_path(user.id), class: "follow-button", data: { turbo_method: :post } %>
+  <%# end %>
+<%# else %>
+    <%#=link_to "フォローする", new_user_session_path, class: "btn" %>
+<%# end %>
+
 <% if user_signed_in? %>
-  <%= turbo_frame_tag user do %>
-    <% if current_user == user %>
-    <% elsif user.followed_by?(current_user) %>
-      <%=link_to "フォロー中", list_destroy_user_relationships_path(user.id), class: "btn", data: { turbo_method: :delete } %>
-    <% else %>
-      <%=link_to "フォローする", list_create_user_relationships_path(user.id), class: "btn", data: { turbo_method: :post } %>
-    <% end %>
+  <% if current_user == user %>
+  <% elsif user.followed_by?(current_user) %>
+    <div class="unfollow-button">
+      <%= link_to "フォロー中", list_destroy_user_relationships_path(user.id), class: "follow-button", id: "unfollow-button", data: { turbo_method: :delete } %>
+    </div>
+    <div class="follow-button" style="display: none;">
+      <%= link_to "フォローする", list_create_user_relationships_path(user.id), class: "follow-button", id: "follow-button",  data: { turbo_method: :post } %>
+    </div>
+  <% else %>
+    <div class="unfollow-button" style="display: none;">
+      <%= link_to "フォロー中", list_destroy_user_relationships_path(user.id), class: "follow-button",  id: "unfollow-button", data: { turbo_method: :delete } %>
+    </div>
+    <div class="follow-button">
+      <%= link_to "フォローする", list_create_user_relationships_path(user.id), class: "follow-button", id: "follow-button",  data: { turbo_method: :post } %>
+    </div>
   <% end %>
 <% else %>
-    <%=link_to "フォローする", new_user_session_path, class: "btn" %>
+  <%= link_to "フォローする", new_user_session_path, class: "btn" %>
 <% end %>

@@ -4,7 +4,7 @@
     <% elsif user.followed_by?(current_user) %>
       <%=link_to "フォロー中", user_relationships_path(user.id), class: "btn", data: { turbo_method: :delete } %>
     <% else %>
-      <%=link_to "フォローする", user_relationships_path(user.id), class: "follow", data: { turbo_method: :post } %>
+      <%=link_to "フォローする", user_relationships_path(user.id), class: "btm", data: { turbo_method: :post } %>
     <% end %>
   <% end %>
 <% else %>
