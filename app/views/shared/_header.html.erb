@@ -52,6 +52,12 @@
           </div>
         <% end %>
 
+        <div class="navi-content">
+          <a href="<%= new_item_path %>" class="navi-link">
+            <%= image_tag "toukou.png", class: "navi-icon" %>
+            <div class="navi-text">投稿する</div>
+          </a>
+        </div>
 
         <% if user_signed_in? %>
           <div class="navi-content">
@@ -66,12 +72,6 @@
           </div>
         <% else %>
         <% end %>
-
-        <div class="navi-content-create">
-          <a href="<%= new_item_path %>" class="navi-link-create">
-            <div class="navi-text">投稿する</div>
-          </a>
-        </div>
 
       </div>
     </div>

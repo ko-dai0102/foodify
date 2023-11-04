@@ -4,6 +4,7 @@
 
 .left-arrow {
   font-size: 25px;
+  color: black;
 }
 
 .show-image {
@@ -21,7 +22,14 @@
 
 .show-side a {
   text-decoration: none;
-  color: black
+}
+
+.show-link {
+  color: black;
+}
+
+.item-user-name {
+  color: black;
 }
 
 .show-user-container {

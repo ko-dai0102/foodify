@@ -107,36 +107,6 @@ body {
   color: black;
 }
 
-.navi-content-create {
-  border-radius: 30px;
-  height: 50px;
-  width: 100%;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(90deg, rgba(247, 93, 139, 1), rgba(254, 220, 64, 1));
-}
-
-.navi-link-create {
-  text-decoration: none;
-  color: white;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navi-content-create:hover {
-  background-color: rgb(243, 243, 243);
-  transition: 0.3s
-}
-
-.navi-content-create:hover .navi-icon {
-  transform: scale(1.07);
-}
-
 .bottom-content {
   border-radius: 10px;
   height: 50px;

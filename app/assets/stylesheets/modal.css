@@ -6,20 +6,37 @@
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(131, 131, 131, 0.7);
+  background-color: rgba(50, 50, 50, 0.7);
 }
 
 .modal-content {
   background-color: white;
   margin: 15% auto;
-  width: 50%;
-  animation-name: popup;
+  height: 400px;
+  width: 400px;
+  border-radius: 10px;
+  animation-name: fade;
+  animation-duration: 0.3s;
+}
+
+@keyframes fade{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
 
 .modal-header {
-  display: flex;
-  justify-content: space-between;
   padding: 3px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header h1 {
+  margin-right: 30px;
 }
 
 .modalClose {

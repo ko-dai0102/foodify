@@ -18,7 +18,7 @@
             <% else %>
               <%= image_tag 'default_icon.jpg', class: "show-icon" %>
             <% end %>
-            <%= @item.user.name %>
+            <div class="item-user-name"><%= @item.user.name %></div>
           </a>
            <%= render partial: "users/follow", locals: { user: @user } %>
         </div>

@@ -50,6 +50,12 @@ class UsersController < ApplicationController
     @followings = @user.followings
   end
 
+  def check_follow_status
+    user = User.find(params[:id])
+    following = current_user.following?(user)
+    render json: { following: following }
+  end
+
 
   private
 
