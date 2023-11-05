@@ -13,8 +13,24 @@
 }
 
 .posted-item {
-  flex: 0 0 calc(33.33% - 10px); /* 幅を均等に分割し、スペースを考慮 */
+  flex: 0 0 calc(33.33% - 3px); /* 幅を均等に分割し、スペースを考慮 */
   height: 320px;
+  margin: 0;
+  position: relative;
+}
+
+.user-item-lists {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 950px; /* 最大幅を設定 */
+  gap: 4px; /* 画像間のスペースを設定 */
+}
+
+.user-posted-item {
+  flex: 0 0 calc(33.33% - 3px); /* 幅を均等に分割し、スペースを考慮 */
+  height: 300px;
   margin: 0;
   position: relative;
 }
@@ -23,6 +39,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.user-posted-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-posted-image:active {
+  filter: brightness(80%);
 }
 
 .posted-image:hover {

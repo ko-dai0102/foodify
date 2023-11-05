@@ -46,6 +46,10 @@
   margin-top: 20px;
 }
 
+.profile-logout a {
+  color: black;
+}
+
 .profile-count {
   margin-left: 20px;
   cursor: pointer;

@@ -16,13 +16,13 @@ class RelationshipsController < ApplicationController
   def list_create
     follow = current_user.active_relationships.new(follower_id: params[:user_id])
     follow.save
-    render partial: "users/list_follow", locals: { user: @user }
+    redirect_to request.referer
   end
 
   def list_destroy
     follow = current_user.active_relationships.find_by(follower_id: params[:user_id])
     follow.destroy
-    render partial: "users/list_follow", locals: { user: @user }
+    redirect_to request.referer
   end
 
   private

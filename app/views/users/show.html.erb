@@ -15,12 +15,12 @@
     <div class="profile-1">
     <%= link_to @user.name, edit_name_user_path(current_user) %>
     <%= button_to 'プロフィールを編集', edit_user_path(current_user), method: :get, class: "profile-setting-button" %>
-    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-logout" %>
     </div>
     <div class="profile-2">
     <%= "投稿#{@user.items.count}件"%>
-    <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div>
-    <%#= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
+    <!-- <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div> -->
+    <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
     <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
     </div>
     <div class="huri">
@@ -52,49 +52,20 @@
   <% end %>
  </div>
 
-  <div id="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1>フォロワー</h1>
-        <span class="modalClose">×</span>
-      </div>
-      <div class="modal-body">
-        <% @followers.each do |user| %>
-        <a href="<%= user_path(user) %>">
-          <div class="follow-user">
-            <% if user.icon.attached? %>
-              <%= image_tag rails_blob_path(user.icon), class: "icon" %>
-            <% else %>
-              <%= image_tag 'default_icon.jpg', class: "icon" %>
-            <% end %>
-            <%= user.name %>
-            <%= render partial: "users/list_follow", locals: { user: user } %>
-          </div>
-        </a>
-      <% end %>
-      </div>
-    </div>
-  </div>
-
   <div class="user-navi">
     <nav class="my-parts">
     <ul>
       <li><a href="#"></a></li>
       <li><%= link_to "投稿", user_path(@user) %></li>
       <li><%= link_to "いいね", liked_items_user_path(@user.id) %></li>
+    </ul>
   </div>
 
-  <div class='item-lists'>
+  <div class='user-item-lists'>
     <% @items.each do |item| %>
-      <div class="posted-item">
+      <div class="user-posted-item">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image, class: 'posted-image' %>
-          <div class="item-counts">
-            <%= image_tag 'heart_white.png', class: "white-heart" %>
-            <%= content_tag(:span, item.likes.count, class: "white-count") %>
-            <%= image_tag 'comment.png', class: "white-heart" %>
-            <%= content_tag(:span, item.comments.count) %>
-          </div>
+          <%= image_tag item.image, class: 'user-posted-image' %>
         <% end %>
       </div>
     <% end %>

@@ -48,6 +48,7 @@ body {
   height: 50px;
   width: 100%;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .navi-content a {
