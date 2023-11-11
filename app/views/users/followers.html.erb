@@ -1,17 +1,17 @@
 <%= render "shared/header" %>
 <div class="follow-container">
-<h3>フォロワー</h3>
-<% @followers.each do |user| %>
-  <a href="<%= user_path(user) %>">
-    <div class="follow-user">
-      <% if user.icon.attached? %>
-        <%= image_tag rails_blob_path(user.icon), class: "icon" %>
-      <% else %>
-        <%= image_tag 'default_icon.jpg', class: "icon" %>
-      <% end %>
-      <%= user.name %>
-      <%= render partial: "users/list_follow", locals: { user: user } %>
-    </div>
-  </a>
-<% end %>
+  <h3>フォロワー</h3>
+  <% @followers.each do |user| %>
+    <a href="<%= user_path(user) %>">
+      <div class="follow-user">
+        <% if user.icon.attached? %>
+          <%= image_tag rails_blob_path(user.icon), class: "icon" %>
+        <% else %>
+          <%= image_tag 'default_icon.jpg', class: "icon" %>
+        <% end %>
+        <%= user.name %>
+        <%= render partial: "users/list_follow", locals: { user: user } %>
+      </div>
+    </a>
+  <% end %>
 </div>
