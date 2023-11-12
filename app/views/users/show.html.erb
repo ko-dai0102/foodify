@@ -1,56 +1,56 @@
 <%= render "shared/header" %>
 <div class="item-contents">
- <div class="profile-container">
-  <% if current_user && current_user.id == @user.id %>
-   <div class="profile-icon-box">
-    <a href="<%= edit_icon_user_path(current_user) %>">
-      <% if @user.icon.attached? %>
-        <%= image_tag rails_blob_path(@user.icon), class: "profire-icon" %>
+  <div class="profile-container">
+      <% if current_user && current_user.id == @user.id %>
+        <div class="profile-icon-box">
+          <a href="<%= edit_icon_user_path(current_user) %>">
+            <% if @user.icon.attached? %>
+              <%= image_tag rails_blob_path(@user.icon), class: "profire-icon" %>
+            <% else %>
+              <%= image_tag 'default_icon.jpg', class: "profire-icon" %>
+            <% end %>
+          </a>
+        </div>
+        <div class="profile-detail">
+          <div class="profile-1">
+          <%= link_to @user.name, edit_name_user_path(current_user) %>
+          <%= button_to 'プロフィールを編集', edit_user_path(current_user), method: :get, class: "profile-setting-button" %>
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-logout" %>
+          </div>
+          <div class="profile-2">
+          <%= "投稿#{@user.items.count}件"%>
+          <!-- <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div> -->
+          <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
+          <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
+          </div>
+          <div class="huri">
+            フリーコメント欄
+          </div>
+        </div>
       <% else %>
-        <%= image_tag 'default_icon.jpg', class: "profire-icon" %>
+        <div class="profile-icon-box">
+          <% if @user.icon.attached? %>
+            <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
+          <% else %>
+            <%= image_tag 'default_icon.jpg', class: "icon" %>
+          <% end %>
+          </div>
+          <div class="profile-detail">
+            <div class="profile-1">
+              <div class="profile-user-name"><%= @user.name %></div>
+              <%= render partial: "users/follow", locals: { user: @user } %>
+            </div>
+            <div class="profile-2">
+              <%= "投稿#{@user.items.count}件"%>
+              <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
+              <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
+            </div>
+            <div class="huri">
+              フリーコメント欄
+            </div>
+          </div>
       <% end %>
-    </a>
-   </div>
-   <div class="profile-detail">
-    <div class="profile-1">
-    <%= link_to @user.name, edit_name_user_path(current_user) %>
-    <%= button_to 'プロフィールを編集', edit_user_path(current_user), method: :get, class: "profile-setting-button" %>
-    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-logout" %>
-    </div>
-    <div class="profile-2">
-    <%= "投稿#{@user.items.count}件"%>
-    <!-- <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div> -->
-    <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
-    <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
-    </div>
-    <div class="huri">
-      フリーコメント欄
-    </div>
-   </div>
-  <% else %>
-  <div class="profile-icon-box">
-    <% if @user.icon.attached? %>
-      <%= image_tag rails_blob_path(@user.icon), class: "icon" %>
-    <% else %>
-      <%= image_tag 'default_icon.jpg', class: "icon" %>
-    <% end %>
-    </div>
-    <div class="profile-detail">
-      <div class="profile-1">
-        <div class="profile-user-name"><%= @user.name %></div>
-        <%= render partial: "users/follow", locals: { user: @user } %>
-      </div>
-      <div class="profile-2">
-        <%= "投稿#{@user.items.count}件"%>
-        <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
-        <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
-      </div>
-      <div class="huri">
-        フリーコメント欄
-      </div>
-    </div>
-  <% end %>
- </div>
+  </div>
 
   <div class="user-navi">
     <nav class="my-parts">
