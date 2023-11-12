@@ -1,5 +1,6 @@
 # Foodify
 ![d7282fc14153bf7887400c4f8710993e](https://github.com/ko-dai0102/foodify/assets/104829293/f5ebb139-4676-4f61-96a2-257fcab1e902)
+<img src="assets/gifs/search.gif" width="400">
 
 ## URL
 https://foodify-mwxq.onrender.com/
