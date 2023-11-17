@@ -1,6 +1,17 @@
 # Foodify
 ![d7282fc14153bf7887400c4f8710993e](https://github.com/ko-dai0102/foodify/assets/104829293/f5ebb139-4676-4f61-96a2-257fcab1e902)
-<img src="assets/gifs/search.gif" width="400">
+Foodifyとは画像を投稿できるWebアプリケーションです。
+
+![66d67fb24392d7afe1d1dad881bffd94](https://github.com/ko-dai0102/foodify/assets/104829293/54949283-6367-4e08-9f43-60ac76d6ae03)
+投稿時に設定されたカテゴリーやタグによって絞ることができます。
+
+![8a535df68fa157d3e74d61935c1e4f8b](https://github.com/ko-dai0102/foodify/assets/104829293/65823ba1-f7d5-4a96-b410-c7c8c4f9000a)
+タイムラインではフォローしたユーザーと自分の投稿を、投稿日時とともに閲覧できるようになっています。
+
+![fc32c20880ff2c05ba4b5999b6e7677b](https://github.com/ko-dai0102/foodify/assets/104829293/9b7b2eaa-7dd2-48f3-9bb2-bdfd516fee0c)
+画像をクリックすると詳細画面が表示され、ユーザー画面、クリックしたカテゴリーやタグで絞られたページに移ることができます。
+
+
 
 ## URL
 https://foodify-mwxq.onrender.com/
