@@ -13,15 +13,15 @@
         </div>
         <div class="profile-detail">
           <div class="profile-1">
-          <%= link_to @user.name, edit_name_user_path(current_user) %>
-          <%= button_to 'プロフィールを編集', edit_user_path(current_user), method: :get, class: "profile-setting-button" %>
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-logout" %>
+            <%= link_to @user.name, edit_name_user_path(current_user) %>
+            <%= button_to 'プロフィールを編集', edit_user_path(current_user), method: :get, class: "profile-setting-button" %>
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-logout" %>
           </div>
           <div class="profile-2">
-          <%= "投稿#{@user.items.count}件"%>
-          <!-- <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div> -->
-          <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
-          <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
+            <%= "投稿#{@user.items.count}件"%>
+            <!-- <div class="profile-count" id="followerModalOpen">フォロワー<%= @user.followers.count %>人</div> -->
+            <%= link_to "フォロワー#{@user.followers.count}人", followers_user_path(@user), class: "profile-count", id: "followerModalOpen" %>
+            <%= link_to "フォロー中#{@user.followings.count}人", followings_user_path(@user), class: "profile-count", id: "followingModalOpen" %>
           </div>
           <div class="huri">
             フリーコメント欄
@@ -49,13 +49,14 @@
               フリーコメント欄
             </div>
           </div>
+        </div>
       <% end %>
   </div>
 
   <div class="user-navi">
     <nav class="my-parts">
     <ul>
-      <li><a href="#####"></a></li>
+      <li><a href="#"></a></li>
       <li><%= link_to "投稿", user_path(@user) %></li>
       <li><%= link_to "いいね", liked_items_user_path(@user.id) %></li>
     </ul>
