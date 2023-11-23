@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with model: @item_form, url: url, method: method, id: 'new_item', local: true do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
   <div class="image-field">
@@ -26,3 +27,4 @@
     <%= f.submit '送信', id: 'submit-button' %>
   </div>
 <% end %>
+</div>
