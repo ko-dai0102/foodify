@@ -1,30 +1,30 @@
-<div class="container">
-<%= form_with model: @item_form, url: url, method: method, id: 'new_item', local: true do |f| %>
-<%= render 'shared/error_messages', model: f.object %>
-  <div class="image-field">
-    <div id="previews"></div>
-    <span>■ 画像</span>
-    <div class="upload-button">
-      <%= f.file_field :image %>
+<div class="form-container">
+  <%= form_with model: @item_form, url: url, method: method, id: 'new_item', local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+    <div class="image-field">
+      <div id="previews"></div>
+      <span>■ 画像</span>
+      <div class="upload-button">
+        <%= f.file_field :image %>
+      </div>
     </div>
-  </div>
-  <div class="category-field">
-    <span>■ カテゴリー１</span>
-    <%= f.collection_select :category1_id, Category1.all, :id, :name, {include_blank: "---"} %>
-  </div>
-  <div class="category-field">
-    <span>■ カテゴリー２</span>
-    <%= f.collection_select :category2_id, Category2.all, :id, :name, {include_blank: "---"} %>
-  </div>
-  <div class="tag-field">
-    <%= f.hidden_field :tag_hidden, id: 'tag-hidden' %>
-    <div id="tag-show"></div>
-    <%= f.text_field :tag_name, placeholder: 'タグを追加' %>
-    <input type="button" value="ボタン" id="tag-button">
-    <div id="search-result"></div>
-  </div>
-  <div class="submit-btn">
-    <%= f.submit '送信', id: 'submit-button' %>
-  </div>
-<% end %>
+    <div class="category-field">
+      <span>■ カテゴリー１</span>
+      <%= f.collection_select :category1_id, Category1.all, :id, :name, {include_blank: "---"} %>
+    </div>
+    <div class="category-field">
+      <span>■ カテゴリー２</span>
+      <%= f.collection_select :category2_id, Category2.all, :id, :name, {include_blank: "---"} %>
+    </div>
+    <div class="tag-field">
+      <%= f.hidden_field :tag_hidden, id: 'tag-hidden' %>
+      <div id="tag-show"></div>
+      <%= f.text_field :tag_name, placeholder: 'タグを追加' %>
+      <input type="button" value="ボタン" id="tag-button">
+      <div id="search-result"></div>
+    </div>
+    <div class="submit-btn">
+      <%= f.submit '送信', id: 'submit-button' %>
+    </div>
+  <% end %>
 </div>
