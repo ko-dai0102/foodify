@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
   def search
     @q = Item.ransack(params[:q])
-    @items = @q.result(distinct: true).includes(:item_tags, :tags, :likes, :comments).order('RAND()')
+    @items = @q.result(distinct: true).includes(:item_tags, :tags, :likes, :comments).order(created_at: :desc)
 
     if params[:category1_id].present?
       category1 = Category1.find_by(id: params[:category1_id])
